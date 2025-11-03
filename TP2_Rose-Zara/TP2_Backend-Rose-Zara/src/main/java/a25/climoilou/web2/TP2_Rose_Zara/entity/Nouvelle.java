@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ public class Nouvelle {
     @Getter
     @Setter
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private LocalDateTime date;
 
     @Getter
     @Setter
@@ -49,7 +50,7 @@ public class Nouvelle {
     @Setter
     private List<String> tags;
 
-    public Nouvelle(String id_auteur, LocalDate date, String titre, String image, String text, String summary, List<String> tags) {
+    public Nouvelle(String id_auteur, LocalDateTime date, String titre, String image, String text, String summary, List<String> tags) {
         this.id_auteur = id_auteur;
         this.date = date;
         this.titre = titre;
