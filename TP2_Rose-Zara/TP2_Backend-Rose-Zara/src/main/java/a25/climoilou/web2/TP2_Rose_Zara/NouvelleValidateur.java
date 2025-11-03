@@ -1,10 +1,16 @@
 package a25.climoilou.web2.TP2_Rose_Zara;
 
 import a25.climoilou.web2.TP2_Rose_Zara.entity.Nouvelle;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 
+
+@Component
+@Validated
 public class NouvelleValidateur {
 
     public void validerNouvelle(Nouvelle nouvelle) {
@@ -24,10 +30,10 @@ public class NouvelleValidateur {
         if (nouvelle.getImage() == null || !nouvelle.getImage().startsWith("http")) {
             throw new NouvelleInformationInvalidException("Le lien de l'image doit commencer par http");
         }
-
-        if (nouvelle.getText() == null || nouvelle.getText().trim().isEmpty()) {
-            throw new NouvelleInformationInvalidException("Le texte de la nouvelle ne doit pas etre vide");
-        }
+//
+//        if (nouvelle.getText() == null || nouvelle.getText().trim().isEmpty()) {
+//            throw new NouvelleInformationInvalidException("Le texte de la nouvelle ne doit pas etre vide");
+//        }
 
         if (nouvelle.getSummary() == null || nouvelle.getSummary().trim().length() < 3) {
             throw new NouvelleInformationInvalidException("Le resume de la nouvelle doit contenir au moins 3 caracteres");
