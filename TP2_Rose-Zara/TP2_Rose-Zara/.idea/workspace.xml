@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41ca57b1-4607-4e7f-90c2-a112bdc37555" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/NouvelleInformationInvalidException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/NouvelleValidateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/Tp2RoseZaraApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/Tp2RoseZaraApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/entity/Nouvelle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/entity/Nouvelle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/a25/climoilou/web2/TP2_Rose_Zara/Tp2RoseZaraApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/test/java/a25/climoilou/web2/TP2_Rose_Zara/Tp2RoseZaraApplicationTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="41ca57b1-4607-4e7f-90c2-a112bdc37555" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762187918379</updated>
-      <workItem from="1762187919938" duration="3991000" />
+      <workItem from="1762187919938" duration="4305000" />
     </task>
     <servers />
   </component>
