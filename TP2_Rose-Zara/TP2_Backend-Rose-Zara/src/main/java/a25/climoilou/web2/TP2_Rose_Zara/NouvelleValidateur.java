@@ -1,11 +1,9 @@
 package a25.climoilou.web2.TP2_Rose_Zara;
 
 import a25.climoilou.web2.TP2_Rose_Zara.entity.Nouvelle;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 
 

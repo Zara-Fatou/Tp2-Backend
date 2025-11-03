@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41ca57b1-4607-4e7f-90c2-a112bdc37555" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/NouvelleValidateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/NouvelleValidateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/controller/NouvelleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/controller/NouvelleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/Tp2RoseZaraApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/Tp2RoseZaraApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/entity/Nouvelle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2_Backend-Rose-Zara/src/main/java/a25/climoilou/web2/TP2_Rose_Zara/entity/Nouvelle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,29 +31,29 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="34yZktqK7bqnNOoloc3gYgiXwNY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Backend-nouvelle",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Backend-nouvelle&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tp2RoseZaraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -78,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762187918379</updated>
-      <workItem from="1762187919938" duration="6643000" />
+      <workItem from="1762187919938" duration="7656000" />
     </task>
     <servers />
   </component>
