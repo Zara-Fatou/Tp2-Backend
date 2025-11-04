@@ -37,7 +37,9 @@ export default function NouvelleCarte({
                                           onSauvegarder,
                                           onAnnuler,
                                           onEdit,
-                                          onSupprimer
+                                          onSupprimer,
+                                            isFetching,
+                                            error
                                       }) {
     const [expanded, setExpanded] = useState(false);
     const { users, currentUser } = useContext(UserContext);
@@ -58,7 +60,21 @@ export default function NouvelleCarte({
     }
 
     return (
-        <Card
+        isFetching ?
+            <Typography sx={{marginTop:"30%", textAlign:"center"}}>
+                <Fade
+                    in={isFetching}
+                    style={{
+                        transitionDelay: isFetching ? '800ms' : '0ms',
+                    }}
+                    unmountOnExit
+                >
+                    <CircularProgress/>
+                </Fade>
+                Fetching data
+            </Typography> :
+            !error.error ?
+            <Card
             sx={{
                 minHeight: 400,
                 maxWidth: 600,
@@ -159,5 +175,10 @@ export default function NouvelleCarte({
                 </CardContent>
             </Collapse>
         </Card>
+                :
+                <Alert severity="error" sx={{margin: "40px"}}>
+                    <AlertTitle>Error</AlertTitle>
+                    {error.message}
+                </Alert>
     );
 }
