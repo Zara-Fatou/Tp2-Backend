@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NouvelleRepository extends CrudRepository<Nouvelle, Long> {
 
-    Nouvelle findFirstByTitle(String titre);
+    Nouvelle findFirstByTitre(String titre);
 }

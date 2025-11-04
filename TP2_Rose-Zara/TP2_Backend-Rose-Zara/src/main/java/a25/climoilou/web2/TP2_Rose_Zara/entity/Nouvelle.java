@@ -25,7 +25,7 @@ public class Nouvelle {
 
     @Getter
     @Setter
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime date;
 
     @Getter
@@ -39,10 +39,12 @@ public class Nouvelle {
 
     @Getter
     @Setter
+    @Lob
     private String text;
 
     @Getter
     @Setter
+    @Column(length = 300)
     private String summary;
 
 
