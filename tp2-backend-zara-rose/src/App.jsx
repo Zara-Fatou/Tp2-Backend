@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { nouvelles as nouvellesInitiales } from "./scripts/images.js";
 import { UserProvider } from "./context/UserContext.jsx";
 import { CriteriaProvider } from "./context/CriteriaContext.jsx";
@@ -54,6 +54,12 @@ function App() {
     const [nouvelleEnEdition, setNouvelleEnEdition] = useState(null);
     const [pageActuelle, setPageActuelle] = useState("accueil");
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [error, setError] = useState({error: undefined, message:" "})
+    const [isFetching, setIsFetching] = useState(false);
+
+    useEffect(() => {
+
+    }, []);
 
     const toggleDrawer = (state) => () => setOpenDrawer(state);
 
