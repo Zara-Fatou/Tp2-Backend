@@ -46,8 +46,8 @@ export async function updateNouvelle(id, nouvellePartielle) {
     });
 
     if (!reponse.ok) {
-        const raison = await reponse.json();
-        throw new Error('Échec de la mise à jour : ' + raison.message);
+        const raison = await reponse.text();
+        throw new Error('Échec de la mise à jour : ' + raison);
     }
 
     return await reponse.json();

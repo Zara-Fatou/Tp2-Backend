@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import {useContext } from "react";
 import {
     Box,
     TextField,
@@ -26,9 +26,6 @@ import {addNouvelle} from "../scripts/http.js";
  */
 export default function NouvelleListe({ nouvelles, setNouvelles }) {
     const { currentUser } = useContext(UserContext);
-    const [lastId, setLastId] = useState(
-        nouvelles.length ? Math.max(...nouvelles.map((n) => n.id)) : 0
-    );
 
     /**
      * Gère la soumission du formulaire et ajoute une nouvelle.
@@ -55,14 +52,13 @@ export default function NouvelleListe({ nouvelles, setNouvelles }) {
 
         // Construire l’objet nouvelle
         const nouvelle = {
-            id: lastId + 1,
-            titre: formData.get("titre"),
-            date: formData.get("date"),
             id_auteur: user.id,
+            date: formData.get("date"),
+            titre: formData.get("titre"),
             auteur: user.nom,
             image: formData.get("image"),
             summary: formData.get("summary"),
-            texte: formData.get("summary"),
+            text: formData.get("summary"),
             tags: formData.get("tags")
                 ? formData.get("tags").split(",").map((tag) => tag.trim())
                 : []

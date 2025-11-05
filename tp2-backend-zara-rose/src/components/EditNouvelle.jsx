@@ -29,15 +29,14 @@ export default function EditNouvelle({ nouvelle, onSauvegarder, onAnnuler }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formattedDate = date.includes("T") ? date : date + "T00:00:00";
-
         const nouvelleModifiee = {
             ...nouvelle,
             titre,
-            date: formattedDate,
+            date,
             summary: resume,
             text: texte,
             image,
+            tags: nouvelle.tags ?? ["general"]
         };
         onSauvegarder(nouvelleModifiee);
     };
@@ -73,7 +72,6 @@ export default function EditNouvelle({ nouvelle, onSauvegarder, onAnnuler }) {
                     onChange={(e) => setDate(e.target.value)}
                     InputLabelProps={{ shrink: true }}
                     required
-                    fullWidth
                 />
                 <TextField
                     label="Résumé"

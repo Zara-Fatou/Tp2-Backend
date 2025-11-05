@@ -4,6 +4,7 @@ import a25.climoilou.web2.TP2_Rose_Zara.entity.Nouvelle;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -17,7 +18,7 @@ public class NouvelleValidateur {
             throw new NouvelleInformationInvalidException("Vous devez obligatoirement inscrire un auteur");
         }
 
-        if (nouvelle.getDate() == null || nouvelle.getDate().isAfter(LocalDateTime.now())) {
+        if (nouvelle.getDate() == null || nouvelle.getDate().isAfter(LocalDate.now())) {
             throw new NouvelleInformationInvalidException("Vous devez entrer une date anterieur a la date actuelle");
         }
 

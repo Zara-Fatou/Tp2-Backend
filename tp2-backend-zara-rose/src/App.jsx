@@ -81,14 +81,11 @@ function App() {
         }
     };
 
-    const handleEdit = async (id, nouvelle) => {
-        try {
-            const updated = await updateNouvelle(id, nouvelle);
-            setNouvelles(nouvelles.map((n) => (n.id === id ? updated : n)));
-        } catch (err) {
-            setError({ error: err.name, message: err.message });
-        }
+    const handleEdit = (item) => {
+        setNouvelleEnEdition(item); // ouvre le formulaire
     };
+
+
 
     const handleSauvegarder = async (modifiee) => {
         try {

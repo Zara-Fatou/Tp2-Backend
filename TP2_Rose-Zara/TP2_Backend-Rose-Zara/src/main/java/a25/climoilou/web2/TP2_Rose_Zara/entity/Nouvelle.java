@@ -17,7 +17,7 @@ public class Nouvelle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Getter
     @Setter
@@ -25,8 +25,8 @@ public class Nouvelle {
 
     @Getter
     @Setter
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
     @Getter
     @Setter
@@ -52,7 +52,7 @@ public class Nouvelle {
     @Setter
     private List<String> tags;
 
-    public Nouvelle(Long id_auteur, LocalDateTime date, String titre, String image, String text, String summary, List<String> tags) {
+    public Nouvelle(Long id_auteur, LocalDate date, String titre, String image, String text, String summary, List<String> tags) {
         this.id_auteur = id_auteur;
         this.date = date;
         this.titre = titre;
@@ -76,7 +76,7 @@ public class Nouvelle {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Nouvelle nouvelle = (Nouvelle) o;
-        return id == nouvelle.id && Objects.equals(id_auteur, nouvelle.id_auteur) && Objects.equals(date, nouvelle.date) && Objects.equals(titre, nouvelle.titre) && Objects.equals(image, nouvelle.image) && Objects.equals(text, nouvelle.text) && Objects.equals(summary, nouvelle.summary) && Objects.equals(tags, nouvelle.tags);
+        return Objects.equals(id, nouvelle.id) && Objects.equals(id_auteur, nouvelle.id_auteur) && Objects.equals(date, nouvelle.date) && Objects.equals(titre, nouvelle.titre) && Objects.equals(image, nouvelle.image) && Objects.equals(text, nouvelle.text) && Objects.equals(summary, nouvelle.summary) && Objects.equals(tags, nouvelle.tags);
     }
 
     @Override
