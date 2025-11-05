@@ -11,7 +11,7 @@ import {
     Collapse,
     Chip,
     Stack,
-    Box
+    Box, CircularProgress, Fade
 } from "@mui/material";
 import EditNouvelle from "./EditNouvelle.jsx";
 import SupprimerNouvelle from "./SupprimerNouvelle.jsx";
@@ -48,7 +48,6 @@ export default function NouvelleCarte({
     const handleExpandClick = () => setExpanded(!expanded);
     const auteur = users.find((u) => u.id === item.id_auteur)?.nom || item.auteur;
 
-    // Si cette nouvelle est en mode édition, on affiche l’éditeur
     if (nouvelleEnEdition?.id === item.id) {
         return (
             <EditNouvelle
@@ -71,7 +70,7 @@ export default function NouvelleCarte({
                 >
                     <CircularProgress/>
                 </Fade>
-                Fetching data
+                Chargement des nouvelles...
             </Typography> :
             !error.error ?
             <Card

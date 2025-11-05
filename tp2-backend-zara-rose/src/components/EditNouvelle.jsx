@@ -29,10 +29,12 @@ export default function EditNouvelle({ nouvelle, onSauvegarder, onAnnuler }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const formattedDate = date.includes("T") ? date : date + "T00:00:00";
+
         const nouvelleModifiee = {
             ...nouvelle,
             titre,
-            date,
+            date: formattedDate,
             summary: resume,
             text: texte,
             image,

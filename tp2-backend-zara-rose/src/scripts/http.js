@@ -1,21 +1,13 @@
-export function fetchAvailableNouvellesFlat(callback, setError){
-    fetch('http://localhost:8080/nouvelles')
-        .then((value) => value.json())
-        .then((reponse) => callback(reponse))
-        .catch((error) => setError({error: error.type, message: error.message}))
-}
-
 export async function fetchAvailableNouvelleAsync(){
-    const reponse = await fetch('http://localhost:8080/Nouvelles');
+    const reponse = await fetch('http://localhost:8080/nouvelles');
     if (!reponse.ok){
         throw new Error("Echec de chargement des nouvelles")
     }
-    const resData = await reponse.json();
-    return resData;
+    return await reponse.json();
 }
 
 export async function addNouvelle(nouvelle){
-    const reponse = await fetch('http://localhost:8080/nouvelle/ajout',
+    const reponse = await fetch('http://localhost:8080/nouvelles/ajout',
         {
             method: 'POST',
             body: JSON.stringify(nouvelle),
@@ -28,8 +20,7 @@ export async function addNouvelle(nouvelle){
         const raison = await reponse.json();
         throw new Error('La nouvelle n\'a pas pu etre creee ' + raison.message);
     }
-    const resData = await reponse.json();
-    return resData;
+    return await reponse.json();
 }
 
 export async function deleteNouvelle(id) {
