@@ -25,6 +25,6 @@ public class Utilisateur {
         this.nom = nom;
         this.role = role;
     }
-    
+
     public Utilisateur() {}
 }
