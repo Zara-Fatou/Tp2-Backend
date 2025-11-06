@@ -33,7 +33,7 @@ export async function deleteNouvelle(id) {
         throw new Error("Échec de la suppression : " + raison);
     }
 
-    return true; // ou reponse.json() si ton backend renvoie un message
+    return reponse.json();
 }
 
 export async function updateNouvelle(id, nouvellePartielle) {
