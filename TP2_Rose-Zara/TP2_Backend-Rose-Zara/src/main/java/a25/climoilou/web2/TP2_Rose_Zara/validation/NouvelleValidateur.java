@@ -1,11 +1,11 @@
-package a25.climoilou.web2.TP2_Rose_Zara;
+package a25.climoilou.web2.TP2_Rose_Zara.validation;
 
+import a25.climoilou.web2.TP2_Rose_Zara.NouvelleInformationInvalidException;
 import a25.climoilou.web2.TP2_Rose_Zara.entity.Nouvelle;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Component
