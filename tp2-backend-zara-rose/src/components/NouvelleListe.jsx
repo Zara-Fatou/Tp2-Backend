@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import {useContext } from "react";
 import {
     Box,
     TextField,
@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { utilisateurs } from "../scripts/utilisateurs.js";
 import { UserContext } from "../context/UserContext.jsx";
+import {addNouvelle} from "../scripts/http.js";
 
 /**
  * Formulaire pour ajouter une nouvelle culturelle.
@@ -25,20 +26,16 @@ import { UserContext } from "../context/UserContext.jsx";
  */
 export default function NouvelleListe({ nouvelles, setNouvelles }) {
     const { currentUser } = useContext(UserContext);
-    const [lastId, setLastId] = useState(
-        nouvelles.length ? Math.max(...nouvelles.map((n) => n.id)) : 0
-    );
 
     /**
      * Gère la soumission du formulaire et ajoute une nouvelle.
      * @param {Event} event - L’événement de soumission du formulaire
      */
-    const ajouterNouvelle = (event) => {
+    const ajouterNouvelle = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const auteurSaisi = formData.get("auteur");
 
-        // Trouver l’utilisateur correspondant au nom saisi
         const user = utilisateurs.find(
             (u) => u.nom.toLowerCase() === auteurSaisi.toLowerCase()
         );
@@ -48,7 +45,6 @@ export default function NouvelleListe({ nouvelles, setNouvelles }) {
             return;
         }
 
-        // Vérification des droits : seul l'admin peut créer au nom d'un autre
         if (currentUser.id !== 1 && user.id !== currentUser.id) {
             alert("Vous ne pouvez créer une nouvelle qu’en votre nom.");
             return;
@@ -56,22 +52,25 @@ export default function NouvelleListe({ nouvelles, setNouvelles }) {
 
         // Construire l’objet nouvelle
         const nouvelle = {
-            id: lastId + 1,
-            titre: formData.get("titre"),
-            date: formData.get("date"),
             id_auteur: user.id,
+            date: formData.get("date"),
+            titre: formData.get("titre"),
             auteur: user.nom,
             image: formData.get("image"),
             summary: formData.get("summary"),
-            texte: formData.get("summary"),
+            text: formData.get("summary"),
             tags: formData.get("tags")
                 ? formData.get("tags").split(",").map((tag) => tag.trim())
                 : []
         };
 
-        setNouvelles([nouvelle, ...nouvelles]);
-        setLastId(lastId + 1);
-        event.target.reset();
+        try {
+            const created = await addNouvelle(nouvelle);
+            setNouvelles((prev) => [created, ...prev]);
+            event.target.reset();
+        } catch (err) {
+            alert("Erreur lors de la création : " + err.message);
+        }
     };
 
     return (

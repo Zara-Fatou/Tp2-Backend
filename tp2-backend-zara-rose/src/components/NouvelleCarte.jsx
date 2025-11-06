@@ -11,7 +11,7 @@ import {
     Collapse,
     Chip,
     Stack,
-    Box
+    Box, CircularProgress, Fade
 } from "@mui/material";
 import EditNouvelle from "./EditNouvelle.jsx";
 import SupprimerNouvelle from "./SupprimerNouvelle.jsx";
@@ -37,7 +37,9 @@ export default function NouvelleCarte({
                                           onSauvegarder,
                                           onAnnuler,
                                           onEdit,
-                                          onSupprimer
+                                          onSupprimer,
+                                            isFetching,
+                                            error
                                       }) {
     const [expanded, setExpanded] = useState(false);
     const { users, currentUser } = useContext(UserContext);
@@ -46,7 +48,6 @@ export default function NouvelleCarte({
     const handleExpandClick = () => setExpanded(!expanded);
     const auteur = users.find((u) => u.id === item.id_auteur)?.nom || item.auteur;
 
-    // Si cette nouvelle est en mode édition, on affiche l’éditeur
     if (nouvelleEnEdition?.id === item.id) {
         return (
             <EditNouvelle
@@ -58,7 +59,21 @@ export default function NouvelleCarte({
     }
 
     return (
-        <Card
+        isFetching ?
+            <Typography sx={{marginTop:"30%", textAlign:"center"}}>
+                <Fade
+                    in={isFetching}
+                    style={{
+                        transitionDelay: isFetching ? '800ms' : '0ms',
+                    }}
+                    unmountOnExit
+                >
+                    <CircularProgress/>
+                </Fade>
+                Chargement des nouvelles...
+            </Typography> :
+            !error.error ?
+            <Card
             sx={{
                 minHeight: 400,
                 maxWidth: 600,
@@ -159,5 +174,10 @@ export default function NouvelleCarte({
                 </CardContent>
             </Collapse>
         </Card>
+                :
+                <Alert severity="error" sx={{margin: "40px"}}>
+                    <AlertTitle>Error</AlertTitle>
+                    {error.message}
+                </Alert>
     );
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -57,7 +58,7 @@ public class NouvelleController {
         return nouvelleRepository.findById(id)
                 .map(n -> {
                     if (nouvelle.getId_auteur() != null) n.setId_auteur(nouvelle.getId_auteur());
-                    if (nouvelle.getDate() != null && nouvelle.getDate().isBefore(LocalDateTime.now())) n.setDate(nouvelle.getDate());
+                    if (nouvelle.getDate() != null && !nouvelle.getDate().isAfter(LocalDate.now())) n.setDate(nouvelle.getDate());
                     if (nouvelle.getTitre() != null && nouvelle.getTitre().trim().length() >= 3) n.setTitre(nouvelle.getTitre());
                     if (nouvelle.getImage() != null && nouvelle.getImage().startsWith("http")) n.setImage(nouvelle.getImage());
                     if (nouvelle.getText() != null && !nouvelle.getText().trim().isEmpty()) n.setText(nouvelle.getText());
