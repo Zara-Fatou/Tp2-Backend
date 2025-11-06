@@ -1,10 +1,13 @@
 package a25.climoilou.web2.TP2_Rose_Zara.repository;
 
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
+import a25.climoilou.web2.TP2_Rose_Zara.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CitereRepository extends CrudRepository<Criteria,Long> {
-    Criteria findById(long id);
+public interface UserRepository extends CrudRepository<User,Long> {
+
+    User findByUsername(String username);
+
 }
+

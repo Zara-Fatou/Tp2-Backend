@@ -1,14 +1,18 @@
 package a25.climoilou.web2.TP2_Rose_Zara.entity;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public class Utilisateur {
+public class User {
 
     @Id
-    @Getter @Setter
+    @Getter
+    @Setter
     private Long id;
 
     @Column(length = 100)
@@ -20,11 +24,13 @@ public class Utilisateur {
     @Setter
     private String role;
 
-    public Utilisateur(Long id, String nom, String role) {
+    public User(Long id, String nom, String role) {
         this.id = id;
         this.nom = nom;
         this.role = role;
     }
 
-    public Utilisateur() {}
+    public User() {}
+
+
 }
