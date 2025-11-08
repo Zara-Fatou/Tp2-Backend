@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CitereRepository extends CrudRepository<Criteria,Long> {
-    Criteria findById(long id);
+public interface CriteriaRepository extends CrudRepository<Criteria,Long> {
+    Criteria findById(String titre);
 }

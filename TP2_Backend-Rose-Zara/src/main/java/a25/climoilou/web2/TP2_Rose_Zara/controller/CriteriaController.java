@@ -2,18 +2,18 @@ package a25.climoilou.web2.TP2_Rose_Zara.controller;
 
 
 import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
-import a25.climoilou.web2.TP2_Rose_Zara.repository.CitereRepository;
+import a25.climoilou.web2.TP2_Rose_Zara.exception.CriteriaInvalidException;
+import a25.climoilou.web2.TP2_Rose_Zara.exception.CriteriaNotFoundException;
+import a25.climoilou.web2.TP2_Rose_Zara.repository.CriteriaRepository;
 import a25.climoilou.web2.TP2_Rose_Zara.validation.CriteriaValidateur;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
-import java.util.List;
 
 
 @RestController
@@ -22,7 +22,7 @@ public class CriteriaController {
     private Logger log = LoggerFactory.getLogger(CriteriaController.class);
 
     @Autowired
-    private CitereRepository critereRepository;
+    private CriteriaRepository critereRepository;
 
     @Autowired
     private CriteriaValidateur criteriaValidateur;
@@ -57,14 +57,65 @@ public class CriteriaController {
       }
   }
 
-  @PatchMapping("/critere/update/{id}")
-    public Criteria updateCritere(@RequestBody Criteria nouvelleCritere, @PathVariable long id){
-      Criteria criteria = null;
-      log.info("Met a jour la critère : " + nouvelleCritere+", id : " + id);
+    @PatchMapping("/critere/patch/{id}")
+    public Criteria updateCritere(@RequestBody Criteria newCritere, @PathVariable Long id) {
+        log.info("Mise à jour du critère ID " + id + " avec : " + newCritere);
+
+        return critereRepository.findById(id)
+                .map(existing -> {
+                    if (newCritere.getTitre() != null &&
+                            criteriaValidateur.validateTitre(newCritere.getTitre()).isBlank()) {
+                        existing.setTitre(newCritere.getTitre());
+                    }
+
+                    if (newCritere.getDate() != null &&
+                            criteriaValidateur.validateDate(newCritere.getDate()).isBlank()) {
+                        existing.setDate(newCritere.getDate());
+                    }
+
+                    if (newCritere.getMotCle() != null &&
+                            criteriaValidateur.validateMotCle(newCritere.getMotCle()).isBlank()) {
+                        existing.setMotCle(newCritere.getMotCle());
+                    }
+
+                    if (newCritere.getCategorie() != null &&
+                            criteriaValidateur.validateCategorie(newCritere.getCategorie()).isBlank()) {
+                        existing.setCategorie(newCritere.getCategorie());
+                    }
+
+                    if (newCritere.getRegion() != null &&
+                            criteriaValidateur.validateRegion(newCritere.getRegion()).isBlank()) {
+                        existing.setRegion(newCritere.getRegion());
+                    }
+
+                    if (newCritere.getResume() != null &&
+                            criteriaValidateur.validateResume(newCritere.getResume()).isBlank()) {
+                        existing.setResume(newCritere.getResume());
+                    }
+
+                    if (newCritere.getTags() != null &&
+                            criteriaValidateur.validateTags(newCritere.getTags()).isBlank()) {
+                        existing.setTags(newCritere.getTags());
+                    }
+
+                    return critereRepository.save(existing);
+                })
+                .orElseThrow(() -> new CriteriaNotFoundException("Critère avec ID " + id + " introuvable"));
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Error handleGenericError(Exception ex) {
+        return new Error("Erreur serveur : " + ex.getMessage());
+    }
+
+    @ExceptionHandler(CriteriaInvalidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Error handleInvalidCriteria(CriteriaInvalidException ex) {
+        return new Error(ex.getMessage());
+    }
 
 
-      return criteria;
-  }
 
 
 
