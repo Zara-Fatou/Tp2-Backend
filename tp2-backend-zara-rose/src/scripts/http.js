@@ -1,9 +1,13 @@
+
+
+
 export async function fetchAvailableNouvelleAsync(){
     const reponse = await fetch('http://localhost:8080/nouvelles');
     if (!reponse.ok){
         throw new Error("Echec de chargement des nouvelles")
     }
     return await reponse.json();
+
 }
 
 export async function addNouvelle(nouvelle){
@@ -51,4 +55,24 @@ export async function updateNouvelle(id, nouvellePartielle) {
     }
 
     return await reponse.json();
+}
+
+export async function fetchAvailableCriteriaAsync() {
+    try {
+        const rep = await fetch('http://localhost:8080/criteres');
+        if (!rep.ok) throw new Error('Erreur HTTP ' + rep.status);
+        return await rep.json();
+    } catch (err) {
+        console.error('Erreur fetchAvailableCriteriaAsync : ' + err);
+        throw err;
+    }
+}
+
+export async function getCritere(){
+    try {
+
+    } catch (err) {
+        console.error('Erreur criteres: ', err)
+        th
+    }
 }
