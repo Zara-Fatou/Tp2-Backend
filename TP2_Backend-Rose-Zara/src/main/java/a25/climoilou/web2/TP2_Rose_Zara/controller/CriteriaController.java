@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @RestController
@@ -27,13 +28,13 @@ public class CriteriaController {
     @Autowired
     private CriteriaValidateur criteriaValidateur;
 
-    @GetMapping(value = "/criteres", produces = {"application/json"})
-    public Collection<Criteria> listCriteria() throws InterruptedException {
-        log.info("listCriteria :");
-
-        return (Collection<Criteria>) critereRepository.findAll();
+    @GetMapping(value = "/criteres", produces = "application/json")
+    public List<Criteria> listCriteria() throws CriteriaInvalidException{
+        log.info("listCriteria : récupération de tous les critères");
+        return critereRepository.findAll();
     }
 
+//Ajout critere
     @PostMapping("/criteres/post")
     public Criteria ajouterCritere(@RequestBody Criteria critere) {
         log.info("ajouter la critère : " + critere.toString());
