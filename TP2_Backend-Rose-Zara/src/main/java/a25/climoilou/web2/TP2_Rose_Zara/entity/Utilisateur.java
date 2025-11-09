@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public class User {
+public class Utilisateur {
 
     @Id
     @Getter
@@ -24,13 +24,13 @@ public class User {
     @Setter
     private String role;
 
-    public User(Long id, String nom, String role) {
+    public Utilisateur(Long id, String nom, String role) {
         this.id = id;
         this.nom = nom;
         this.role = role;
     }
 
-    public User() {}
+    public Utilisateur() {}
 
 
 }

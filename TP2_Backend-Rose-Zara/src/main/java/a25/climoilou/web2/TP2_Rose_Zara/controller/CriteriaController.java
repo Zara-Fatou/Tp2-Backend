@@ -27,35 +27,35 @@ public class CriteriaController {
     @Autowired
     private CriteriaValidateur criteriaValidateur;
 
-  @GetMapping(value = "/criteres", produces ={"application/json"})
-    public Collection<Criteria> listCriteria() throws  InterruptedException{
-      log.info("listCriteria :");
+    @GetMapping(value = "/criteres", produces = {"application/json"})
+    public Collection<Criteria> listCriteria() throws InterruptedException {
+        log.info("listCriteria :");
 
-      return (Collection<Criteria>) critereRepository.findAll();
-  }
+        return (Collection<Criteria>) critereRepository.findAll();
+    }
 
-  @PostMapping("/criteres/post")
-    public Criteria ajouterCritere(@RequestBody Criteria critere){
-      log.info("ajouter la critère : " + critere.toString());
-      criteriaValidateur.validateurCritere(critere);
-      Criteria criteria = critereRepository.save(critere);
-      log.info("Critères sauvegardée: " + criteria.getTitre());
+    @PostMapping("/criteres/post")
+    public Criteria ajouterCritere(@RequestBody Criteria critere) {
+        log.info("ajouter la critère : " + critere.toString());
+        criteriaValidateur.validateurCritere(critere);
+        Criteria criteria = critereRepository.save(critere);
+        log.info("Critères sauvegardée: " + criteria.getTitre());
 
-      return criteria;
-  }
+        return criteria;
+    }
 
-  @DeleteMapping("/criteres/delete/{id}")
-    void deleteCritere(@PathVariable long id){
-      log.info("Efface la critère : " + id);
+    @DeleteMapping("/criteres/delete/{id}")
+    void deleteCritere(@PathVariable long id) {
+        log.info("Efface la critère : " + id);
 
-      if(critereRepository.existsById(id)){
-          log.info("deleteCritere : " + id);
+        if (critereRepository.existsById(id)) {
+            log.info("deleteCritere : " + id);
 
-      } else {
-          log.warn("Le id n'existe pas: ");
-          throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Le id n'existe pas");
-      }
-  }
+        } else {
+            log.warn("Le id n'existe pas: ");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Le id n'existe pas");
+        }
+    }
 
     @PatchMapping("/critere/patch/{id}")
     public Criteria updateCritere(@RequestBody Criteria newCritere, @PathVariable Long id) {
@@ -102,23 +102,6 @@ public class CriteriaController {
                 })
                 .orElseThrow(() -> new CriteriaNotFoundException("Critère avec ID " + id + " introuvable"));
     }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Error handleGenericError(Exception ex) {
-        return new Error("Erreur serveur : " + ex.getMessage());
-    }
-
-    @ExceptionHandler(CriteriaInvalidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Error handleInvalidCriteria(CriteriaInvalidException ex) {
-        return new Error(ex.getMessage());
-    }
-
-
-
-
-
 
 
 }
