@@ -73,9 +73,9 @@ function App() {
     const handleSupprimer = async (id) => {
         try {
             await deleteNouvelle(id);
-            // utiliser le filter voir
-            const updated = await fetchAvailableNouvelleAsync();
-            setNouvelles(updated);
+            setNouvelles(old => {
+                return old.filter(n => n.id !== id)
+            })
 
         } catch (err) {
             setError({ error: err.name, message: err.message });
