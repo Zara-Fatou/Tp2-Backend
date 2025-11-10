@@ -1,6 +1,5 @@
 import "./App.css";
-import { useState } from "react";
-import { nouvelles as nouvellesInitiales } from "./scripts/images.js";
+import {useEffect, useState} from "react";
 import { UserProvider } from "./context/UserContext.jsx";
 import { CriteriaProvider } from "./context/CriteriaContext.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
@@ -20,18 +19,19 @@ import {
     Typography,
     CssBaseline,
     Button,
-    Drawer,
+    Drawer, AlertTitle, Alert,
 } from "@mui/material";
-
-/** Clé utilisée pour stocker les nouvelles dans localStorage */
-const LOCALESTORAGE = "tp1_Nouvelles";
+import {
+    deleteNouvelle,
+    fetchAvailableNouvelleAsync,
+    updateNouvelle
+} from "./scripts/http.js";
 
 /**
  * Composant principal de l'application.
  *
  * Fonctionnalités principales :
  * - Gestion des **nouvelles culturelles** (articles) : ajout, édition, suppression.
- * - Persistance des données avec `localStorage`.
  * - Navigation entre plusieurs pages : accueil, statistiques, etc.
  * - Fournit les contextes globaux : Thème, Utilisateur, Critères.
  * - Structure la mise en page avec une barre de navigation, contenu central, drawer (ajout) et pied de page.
@@ -45,48 +45,59 @@ const LOCALESTORAGE = "tp1_Nouvelles";
  * @returns {JSX.Element} L’interface principale de l’application.
  */
 function App() {
-    const initierNouvelle = () => {
-        const sauvegardees = localStorage.getItem(LOCALESTORAGE);
-        return sauvegardees ? JSON.parse(sauvegardees) : nouvellesInitiales;
-    };
 
-    const [nouvelles, setNouvelles] = useState(initierNouvelle);
+    const [nouvelles, setNouvelles] = useState([]);
     const [nouvelleEnEdition, setNouvelleEnEdition] = useState(null);
     const [pageActuelle, setPageActuelle] = useState("accueil");
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [error, setError] = useState({error: undefined, message:" "})
+    const [isFetching, setIsFetching] = useState(false);
+
+    useEffect(() =>{
+        async function fetchData() {
+            setIsFetching(true);
+            try {
+                const data = await fetchAvailableNouvelleAsync();
+                setNouvelles(data);
+            } catch (error) {
+                setError({ error: "error", message: error.message });
+            } finally {
+                setIsFetching(false);
+            }
+        }
+        fetchData();
+    }, [])
 
     const toggleDrawer = (state) => () => setOpenDrawer(state);
 
-<<<<<<< Updated upstream
-    const sauvegarderNouvelles = (liste) => {
-        setNouvelles(liste);
-        localStorage.setItem(LOCALESTORAGE, JSON.stringify(liste));
-=======
     const handleSupprimer = async (id) => {
         try {
             await deleteNouvelle(id);
             setNouvelles(old => {
                 return old.filter(n => n.id !== id)
             })
-            // const updated = await fetchAvailableNouvelleAsync();
-            // setNouvelles(updated);
+
         } catch (err) {
             setError({ error: err.name, message: err.message });
         }
->>>>>>> Stashed changes
     };
 
-    const handleSupprimer = (id) =>
-        sauvegarderNouvelles(nouvelles.filter((n) => n.id !== id));
-
-    const handleEdit = (nouvelle) => setNouvelleEnEdition(nouvelle);
-
-    const handleSauvegarder = (modifiee) => {
-        sauvegarderNouvelles(
-            nouvelles.map((n) => (n.id === modifiee.id ? modifiee : n))
-        );
-        setNouvelleEnEdition(null);
+    const handleEdit = (item) => {
+        setNouvelleEnEdition(item); // ouvre le formulaire
     };
+
+
+
+    const handleSauvegarder = async (modifiee) => {
+        try {
+            const updated = await updateNouvelle(modifiee.id, modifiee);
+            setNouvelles(nouvelles.map((n) => (n.id === modifiee.id ? updated : n)));
+            setNouvelleEnEdition(null);
+        } catch (err) {
+            setError({ error: err.name, message: err.message });
+        }
+    };
+
 
     const handleAnnulerEdition = () => setNouvelleEnEdition(null);
 
@@ -193,6 +204,8 @@ function App() {
                                                             onAnnuler={handleAnnulerEdition}
                                                             onEdit={handleEdit}
                                                             onSupprimer={handleSupprimer}
+                                                            isFetching = {isFetching}
+                                                            error = {error}
                                                         />
                                                     </Grid>
                                                 ))
@@ -210,6 +223,12 @@ function App() {
                                             </Grid>
                                         ) : null}
                                     </Grid>
+                                    ) : (
+                                    <Alert severity="error" sx={{margin: "40px"}}>
+                                        <AlertTitle>Error</AlertTitle>
+                                        {error.message}
+                                    </Alert>
+                                    )}
                                 </Grid>
                             </Grid>
                         </Box>
@@ -218,8 +237,9 @@ function App() {
                             <Box sx={{ width: 350, p: 2, marginTop: 10 }}>
                                 <NouvelleListe
                                     nouvelles={nouvelles}
-                                    setNouvelles={sauvegarderNouvelles}
+                                    setNouvelles={setNouvelles}
                                 />
+
                             </Box>
                         </Drawer>
 

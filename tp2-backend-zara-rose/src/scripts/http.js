@@ -1,6 +1,3 @@
-
-
-
 export async function fetchAvailableNouvelleAsync(){
     const reponse = await fetch('http://localhost:8080/nouvelles');
     if (!reponse.ok){
@@ -71,5 +68,6 @@ export async function fetchAvailableCriteriaAsync() {
 //
 //     } catch (err) {
 //         console.error('Erreur criteres: ', err)
+//         th
 //     }
 // }

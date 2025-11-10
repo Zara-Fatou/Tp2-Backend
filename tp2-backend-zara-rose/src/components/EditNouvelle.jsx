@@ -36,6 +36,7 @@ export default function EditNouvelle({ nouvelle, onSauvegarder, onAnnuler }) {
             summary: resume,
             text: texte,
             image,
+            tags: nouvelle.tags ?? ["general"]
         };
         onSauvegarder(nouvelleModifiee);
     };
@@ -71,7 +72,6 @@ export default function EditNouvelle({ nouvelle, onSauvegarder, onAnnuler }) {
                     onChange={(e) => setDate(e.target.value)}
                     InputLabelProps={{ shrink: true }}
                     required
-                    fullWidth
                 />
                 <TextField
                     label="Résumé"
