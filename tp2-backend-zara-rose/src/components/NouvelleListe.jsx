@@ -19,11 +19,10 @@ import { UserContext } from "../context/UserContext.jsx";
  *
  * @component
  * @param {Object} props - Propriétés du composant
- * @param {Array} props.nouvelles - Liste actuelle des nouvelles
  * @param {Function} props.setNouvelles - Setter pour mettre à jour les nouvelles
  * @returns {JSX.Element}
  */
-export default function NouvelleListe({ nouvelles, setNouvelles }) {
+export default function NouvelleListe({setNouvelles }) {
     const { currentUser } = useContext(UserContext);
     const [lastId, setLastId] = useState(
         nouvelles.length ? Math.max(...nouvelles.map((n) => n.id)) : 0

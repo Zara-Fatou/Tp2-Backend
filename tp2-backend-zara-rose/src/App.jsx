@@ -57,9 +57,23 @@ function App() {
 
     const toggleDrawer = (state) => () => setOpenDrawer(state);
 
+<<<<<<< Updated upstream
     const sauvegarderNouvelles = (liste) => {
         setNouvelles(liste);
         localStorage.setItem(LOCALESTORAGE, JSON.stringify(liste));
+=======
+    const handleSupprimer = async (id) => {
+        try {
+            await deleteNouvelle(id);
+            setNouvelles(old => {
+                return old.filter(n => n.id !== id)
+            })
+            // const updated = await fetchAvailableNouvelleAsync();
+            // setNouvelles(updated);
+        } catch (err) {
+            setError({ error: err.name, message: err.message });
+        }
+>>>>>>> Stashed changes
     };
 
     const handleSupprimer = (id) =>
