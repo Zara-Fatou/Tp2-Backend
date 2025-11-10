@@ -36,8 +36,6 @@ export async function deleteNouvelle(id) {
         const raison = await reponse.text();
         throw new Error("Échec de la suppression : " + raison);
     }
-
-    return reponse.json();
 }
 
 export async function updateNouvelle(id, nouvellePartielle) {
@@ -68,11 +66,11 @@ export async function fetchAvailableCriteriaAsync() {
     }
 }
 
-export async function getCritere(){
-    try {
-
-    } catch (err) {
-        console.error('Erreur criteres: ', err)
-        th
-    }
-}
+// export async function getCritere(){
+//     try {
+//
+//     } catch (err) {
+//         console.error('Erreur criteres: ', err)
+//         th
+//     }
+// }

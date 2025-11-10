@@ -73,9 +73,10 @@ function App() {
     const handleSupprimer = async (id) => {
         try {
             await deleteNouvelle(id);
-            // recharge directement depuis le backend
+            // utiliser le filter voir
             const updated = await fetchAvailableNouvelleAsync();
             setNouvelles(updated);
+
         } catch (err) {
             setError({ error: err.name, message: err.message });
         }
