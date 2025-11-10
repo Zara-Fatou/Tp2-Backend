@@ -192,42 +192,44 @@ function App() {
                                 )}
 
                                 <Grid size={{ xs: 12, md: 9 }}>
-                                    <Grid container spacing={3} alignItems="flex-start">
-                                        {pageActuelle === "accueil" ? (
-                                            nouvelles.length ? (
-                                                nouvelles.map((item) => (
-                                                    <Grid item xs={12} sm={6} key={item.id}>
-                                                        <NouvelleCarte
-                                                            item={item}
-                                                            nouvelleEnEdition={nouvelleEnEdition}
-                                                            onSauvegarder={handleSauvegarder}
-                                                            onAnnuler={handleAnnulerEdition}
-                                                            onEdit={handleEdit}
-                                                            onSupprimer={handleSupprimer}
-                                                            isFetching = {isFetching}
-                                                            error = {error}
-                                                        />
-                                                    </Grid>
-                                                ))
-                                            ) : (
-                                                <Typography
-                                                    variant="body2"
-                                                    sx={{ mt: 2, color: "text.secondary" }}
-                                                >
-                                                    Aucune nouvelle à afficher.
-                                                </Typography>
-                                            )
-                                        ) : pageActuelle === "statistiques" ? (
-                                            <Grid item xs={12}>
-                                                <Statistiques nouvelles={nouvelles} />
-                                            </Grid>
-                                        ) : null}
-                                    </Grid>
+
+                                    {!error.error ? (
+                                        <Grid container spacing={3} alignItems="flex-start">
+                                            {pageActuelle === "accueil" ? (
+                                                nouvelles.length ? (
+                                                    nouvelles.map((item) => (
+                                                        <Grid item xs={12} sm={6} key={item.id}>
+                                                            <NouvelleCarte
+                                                                item={item}
+                                                                nouvelleEnEdition={nouvelleEnEdition}
+                                                                onSauvegarder={handleSauvegarder}
+                                                                onAnnuler={handleAnnulerEdition}
+                                                                onEdit={handleEdit}
+                                                                onSupprimer={handleSupprimer}
+                                                                isFetching = {isFetching}
+                                                                error = {error}
+                                                            />
+                                                        </Grid>
+                                                    ))
+                                                ) : (
+                                                    <Typography
+                                                        variant="body2"
+                                                        sx={{ mt: 2, color: "text.secondary" }}
+                                                    >
+                                                        Aucune nouvelle à afficher.
+                                                    </Typography>
+                                                )
+                                            ) : pageActuelle === "statistiques" ? (
+                                                <Grid item xs={12}>
+                                                    <Statistiques nouvelles={nouvelles} />
+                                                </Grid>
+                                            ) : null}
+                                        </Grid>
                                     ) : (
-                                    <Alert severity="error" sx={{margin: "40px"}}>
-                                        <AlertTitle>Error</AlertTitle>
-                                        {error.message}
-                                    </Alert>
+                                        <Alert severity="error" sx={{margin: "40px"}}>
+                                            <AlertTitle>Error</AlertTitle>
+                                            {error.message}
+                                        </Alert>
                                     )}
                                 </Grid>
                             </Grid>
