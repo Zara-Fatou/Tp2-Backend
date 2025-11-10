@@ -10,7 +10,7 @@
 		<version>3.2.5</version>
 		<relativePath/>
 	</parent>
-
+    <packaging>jar</packaging>
 	<groupId>a25.climoilou.web2</groupId>
 	<artifactId>TP2_Rose-Zara</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
