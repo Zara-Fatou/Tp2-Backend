@@ -2,6 +2,8 @@ package a25.climoilou.web2.TP2_Rose_Zara.config;
 
 import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
 import a25.climoilou.web2.TP2_Rose_Zara.repository.CriteriaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import java.util.List;
 @Configuration
 public class CriteriaInitializer {
 
+    private static final Logger log = LoggerFactory.getLogger(CriteriaInitializer.class);
     @Bean
     public CommandLineRunner initCritere(CriteriaRepository repository) {
         return args -> {
@@ -25,7 +28,9 @@ public class CriteriaInitializer {
                         new Criteria("Musique K-pop", LocalDate.of(2022, 11, 5), "BTS", "Musique", "Corée du Sud", "Phénomène mondial de la pop coréenne", "K-pop,Concert")
                 );
                 repository.saveAll(criteres);
-                System.out.println("Critères initiaux enrichis avec gastronomie, cinéma, etc.");
+                log.info("✅ Critères initiaux enrichis avec gastronomie, cinéma, etc.");
+            } else {
+                log.info("ℹ️ Critères déjà présents, aucun chargement nécessaire.");
             }
         };
     }

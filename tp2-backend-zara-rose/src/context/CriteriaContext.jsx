@@ -56,6 +56,8 @@ export const CriteriaProvider = ({ children }) => {
         setCriteres((avant) => avant.filter((c) => c.id !== critere.id));
     };
 
+    
+
     return (
         <CriteriaContext.Provider value={{ criteres, ajouterCritere, supprimerCritere }}>
             {children}

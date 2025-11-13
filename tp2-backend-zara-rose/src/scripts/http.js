@@ -1,16 +1,16 @@
+const BASE_URL = "http://localhost:8080";
 
 
-
-export async function fetchAvailableNouvelleAsync(){
+export async function fetchAvailableNouvelleAsync() {
     const reponse = await fetch('http://localhost:8080/nouvelles');
-    if (!reponse.ok){
+    if (!reponse.ok) {
         throw new Error("Echec de chargement des nouvelles")
     }
     return await reponse.json();
 
 }
 
-export async function addNouvelle(nouvelle){
+export async function addNouvelle(nouvelle) {
     const reponse = await fetch('http://localhost:8080/nouvelles/ajout',
         {
             method: 'POST',
@@ -20,7 +20,7 @@ export async function addNouvelle(nouvelle){
                     'Content-Type': 'application/json'
                 }
         })
-    if (!reponse.ok){
+    if (!reponse.ok) {
         const raison = await reponse.json();
         throw new Error('La nouvelle n\'a pas pu etre creee ' + raison.message);
     }
@@ -56,21 +56,59 @@ export async function updateNouvelle(id, nouvellePartielle) {
 }
 
 export async function fetchAvailableCriteriaAsync() {
-    try {
-        const rep = await fetch('http://localhost:8080/criteres');
-        if (!rep.ok) throw new Error('Erreur HTTP ' + rep.status);
-        return await rep.json();
-    } catch (err) {
-        console.error('Erreur fetchAvailableCriteriaAsync : ' + err);
-        throw err;
+
+    const url = `${BASE_URL}/criteres`;
+    const rep = await fetch(url);
+
+    if (!rep.ok) {
+        throw new Error('Echec chargement des criteres ');
     }
+    return await rep.json();
 }
 
-// export async function getCritere(){
-//     try {
-//
-//     } catch (err) {
-//         console.error('Erreur criteres: ', err)
-//         th
-//     }
-// }
+export async function ajouterCritere(critere) {
+
+    const rep = await fetch(`${BASE_URL}/criteres/post`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(critere)
+    });
+    if (!rep.ok) {
+        throw new Error("Erreur lors de l'ajout du critère");
+    }
+    return await rep.json();
+}
+
+export async function supprimerCritere(id) {
+    const rep = await fetch(`${BASE_URL}/criteres/delete/${id}`, {
+        method: "DELETE"
+    });
+    if (!rep.ok) {
+        throw new Error(`Échec de la suppression (HTTP ${rep.status})`);
+    }
+    // Si le backend renvoie du JSON, on le lit; sinon on renvoie null
+    try {
+        return await rep.json();
+    } catch {
+        return null; // 204 ou réponse vide
+    }
+
+
+}
+
+export async function modifierCritere(id, nouveau) {
+
+    const response = await fetch(`${BASE_URL}/critere/patch/${id}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(nouveau)
+    });
+    if (!response.ok) {
+        throw new Error("Erreur lors de la mise à jour du critère");
+    }
+    return await response.json();
+}
+
+
