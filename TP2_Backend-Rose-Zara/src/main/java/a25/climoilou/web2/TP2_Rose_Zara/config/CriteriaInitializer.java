@@ -4,10 +4,12 @@ import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
 import a25.climoilou.web2.TP2_Rose_Zara.repository.CriteriaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Configuration
 public class CriteriaInitializer {
 
     @Bean
