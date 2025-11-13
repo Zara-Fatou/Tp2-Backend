@@ -8,15 +8,14 @@ import java.time.LocalDate;
 @Component
 public class CriteriaValidateur {
 
-    public String validateurCritere(Criteria critere) {
-        return "" +
-                validateTitre(critere.getTitre()) +
-                validateDate(critere.getDate()) +
-                validateMotCle(critere.getMotCle()) +
-                validateCategorie(critere.getCategorie()) +
-                validateRegion(critere.getRegion()) +
-                validateResume(critere.getResume()) +
-                validateTags(critere.getTags());
+    public void validateurCritere(Criteria critere) {
+        validateTitre(critere.getTitre());
+        validateDate(critere.getDate());
+        validateMotCle(critere.getMotCle());
+        validateCategorie(critere.getCategorie());
+        validateRegion(critere.getRegion());
+        validateResume(critere.getResume());
+        validateTags(critere.getTags());
     }
 
     public String validateTitre(String titre) {

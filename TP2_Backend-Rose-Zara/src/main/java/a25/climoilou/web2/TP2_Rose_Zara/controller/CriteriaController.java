@@ -18,6 +18,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/criteres")
 public class CriteriaController {
 
     private Logger log = LoggerFactory.getLogger(CriteriaController.class);
@@ -28,7 +29,8 @@ public class CriteriaController {
     @Autowired
     private CriteriaValidateur criteriaValidateur;
 
-    @GetMapping(value = "/criteres", produces = "application/json")
+
+    @GetMapping(produces = "application/json")
     public List<Criteria> listCriteria() throws CriteriaInvalidException{
         log.info("listCriteria : récupération de tous les critères");
         return critereRepository.findAll();
