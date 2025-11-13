@@ -1,7 +1,7 @@
 package a25.climoilou.web2.TP2_Rose_Zara;
 
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Nouvelle;
-import a25.climoilou.web2.TP2_Rose_Zara.repository.NouvelleRepository;
+import a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.entity.Nouvelle;
+import a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.repository.NouvelleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
