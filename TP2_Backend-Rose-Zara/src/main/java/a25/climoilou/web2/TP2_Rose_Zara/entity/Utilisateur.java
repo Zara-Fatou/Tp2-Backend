@@ -1,9 +1,7 @@
 package a25.climoilou.web2.TP2_Rose_Zara.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +21,10 @@ public class Utilisateur {
     @Getter
     @Setter
     private String role;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_")
+    private Utilisateur proprietaire;
 
     public Utilisateur(Long id, String nom, String role) {
         this.id = id;

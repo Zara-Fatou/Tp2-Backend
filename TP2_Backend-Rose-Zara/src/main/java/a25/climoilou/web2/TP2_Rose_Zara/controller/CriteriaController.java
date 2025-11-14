@@ -31,12 +31,12 @@ public class CriteriaController {
 
 
     @GetMapping(produces = "application/json")
-    public List<Criteria> listCriteria() throws CriteriaInvalidException{
+    public List<Criteria> listCriteria() throws CriteriaInvalidException {
         log.info("listCriteria : récupération de tous les critères");
         return critereRepository.findAll();
     }
 
-//Ajout critere
+    //Ajout critere
     @PostMapping("/criteres/post")
     public Criteria ajouterCritere(@RequestBody Criteria critere) {
         log.info("ajouter la critère : " + critere.toString());
@@ -49,10 +49,10 @@ public class CriteriaController {
 
     @DeleteMapping("/criteres/delete/{id}")
     void deleteCritere(@PathVariable long id) {
-        log.info("Efface la critère : " + id);
+        log.info("Efface la critère : {}", id);
 
         if (critereRepository.existsById(id)) {
-            log.info("deleteCritere : " + id);
+            log.info("deleteCritere : {}", id);
 
         } else {
             log.warn("Le id n'existe pas: ");
