@@ -28,7 +28,7 @@ export async function addNouvelle(nouvelle) {
 }
 
 export async function deleteNouvelle(id) {
-    const reponse = await fetch(`http://localhost:8080/nouvelles/delete/${id}`, {
+    const reponse = await fetch(`${BASE_URL}/nouvelles/delete/${id}`, {
         method: 'DELETE'
     });
 
@@ -39,7 +39,7 @@ export async function deleteNouvelle(id) {
 }
 
 export async function updateNouvelle(id, nouvellePartielle) {
-    const reponse = await fetch(`http://localhost:8080/nouvelles/${id}`, {
+    const reponse = await fetch(`${BASE_URL}/nouvelles/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ export async function fetchAvailableCriteriaAsync() {
 
 export async function ajouterCritere(critere) {
 
-    const rep = await fetch(`${BASE_URL}/criteres/post`, {
+    const rep = await fetch(`${BASE_URL}/critere/post`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -92,7 +92,7 @@ export async function supprimerCritere(id) {
     try {
         return await rep.json();
     } catch {
-        return null; // 204 ou réponse vide
+        return null;
     }
 
 
@@ -100,7 +100,7 @@ export async function supprimerCritere(id) {
 
 export async function modifierCritere(id, nouveau) {
 
-    const response = await fetch(`${BASE_URL}/critere/patch/${id}`, {
+    const response = await fetch(`${BASE_URL}/criteres/patch/${id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(nouveau)
@@ -111,4 +111,14 @@ export async function modifierCritere(id, nouveau) {
     return await response.json();
 }
 
+export async function fetchAvailableUserAsync() {
+
+    const url = `${BASE_URL}/utilisateurs`;
+    const rep = await fetch(url);
+
+    if (!rep.ok) {
+        throw new Error('Echec chargement des utilisateurs ');
+    }
+    return await rep.json();
+}
 

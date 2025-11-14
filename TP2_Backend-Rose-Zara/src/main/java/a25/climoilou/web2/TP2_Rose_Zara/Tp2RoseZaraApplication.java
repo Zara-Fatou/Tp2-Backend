@@ -17,7 +17,7 @@ import java.util.List;
 @SpringBootApplication
 public class Tp2RoseZaraApplication {
 
-    private static final Logger log = LoggerFactory.getLogger(Tp2RoseZaraApplication.class);
+    public static final Logger log = LoggerFactory.getLogger(Tp2RoseZaraApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(Tp2RoseZaraApplication.class, args);
