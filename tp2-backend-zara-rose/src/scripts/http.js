@@ -1,6 +1,10 @@
 const BASE_URL = "http://localhost:8080";
 
 
+/**
+ *
+ * @returns {Promise<any>}
+ */
 export async function fetchAvailableNouvelleAsync() {
     const reponse = await fetch('http://localhost:8080/nouvelles');
     if (!reponse.ok) {
@@ -10,6 +14,11 @@ export async function fetchAvailableNouvelleAsync() {
 
 }
 
+/**
+ *
+ * @param nouvelle
+ * @returns {Promise<any>}
+ */
 export async function addNouvelle(nouvelle) {
     const reponse = await fetch('http://localhost:8080/nouvelles/ajout',
         {
@@ -27,6 +36,11 @@ export async function addNouvelle(nouvelle) {
     return await reponse.json();
 }
 
+/**
+ *
+ * @param id
+ * @returns {Promise<void>}
+ */
 export async function deleteNouvelle(id) {
     const reponse = await fetch(`${BASE_URL}/nouvelles/delete/${id}`, {
         method: 'DELETE'
@@ -38,6 +52,12 @@ export async function deleteNouvelle(id) {
     }
 }
 
+/**
+ *
+ * @param id
+ * @param nouvellePartielle
+ * @returns {Promise<any>}
+ */
 export async function updateNouvelle(id, nouvellePartielle) {
     const reponse = await fetch(`${BASE_URL}/nouvelles/${id}`, {
         method: 'PATCH',
@@ -55,6 +75,10 @@ export async function updateNouvelle(id, nouvellePartielle) {
     return await reponse.json();
 }
 
+/**
+ *
+ * @returns {Promise<any>}
+ */
 export async function fetchAvailableCriteriaAsync() {
 
     const url = `${BASE_URL}/criteres`;
@@ -66,6 +90,11 @@ export async function fetchAvailableCriteriaAsync() {
     return await rep.json();
 }
 
+/**
+ *
+ * @param critere
+ * @returns {Promise<any>}
+ */
 export async function ajouterCritere(critere) {
 
     const rep = await fetch(`${BASE_URL}/critere/post`, {
@@ -81,6 +110,11 @@ export async function ajouterCritere(critere) {
     return await rep.json();
 }
 
+/**
+ *
+ * @param id
+ * @returns {Promise<any|null>}
+ */
 export async function supprimerCritere(id) {
     const rep = await fetch(`${BASE_URL}/criteres/delete/${id}`, {
         method: "DELETE"
@@ -98,19 +132,10 @@ export async function supprimerCritere(id) {
 
 }
 
-export async function modifierCritere(id, nouveau) {
-
-    const response = await fetch(`${BASE_URL}/criteres/patch/${id}`, {
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(nouveau)
-    });
-    if (!response.ok) {
-        throw new Error("Erreur lors de la mise à jour du critère");
-    }
-    return await response.json();
-}
-
+/**
+ *
+ * @returns {Promise<any>}
+ */
 export async function fetchAvailableUserAsync() {
 
     const url = `${BASE_URL}/utilisateurs`;
