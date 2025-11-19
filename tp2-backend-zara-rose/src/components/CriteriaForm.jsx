@@ -8,67 +8,56 @@ import {
     InputAdornment,
     useTheme,
 } from "@mui/material";
+
 import { CriteriaContext } from "../context/CriteriaContext.jsx";
-import { UserContext } from "../context/UserContext.jsx";
 
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CategoryIcon from "@mui/icons-material/Category";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import TagIcon from "@mui/icons-material/Tag";
 import TitleIcon from "@mui/icons-material/Title";
-import PersonIcon from "@mui/icons-material/Person";
 import DescriptionIcon from "@mui/icons-material/Description";
 
 export default function CriteriaForm() {
+
     const { ajouterCritere } = useContext(CriteriaContext);
-    const { currentUser } = useContext(UserContext);
     const theme = useTheme();
 
     const [formData, setFormData] = useState({
         titre: "",
         date: "",
-        auteur: "",
-        summary: "",
+        motCle: "",
+        resume: "",
         categorie: "",
         region: "",
-        importance: "",
         tags: "",
     });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { titre, date, auteur, summary, tags } = formData;
-
         const critere = {
-            id: Date.now(),
-            refPersonne: currentUser.id,
-            nomPersonne: currentUser.nom,
-            dateSaisie: date,
-            elements: {
-                titre,
-                auteur,
-                summary,
-                categorie: formData.categorie,
-                region: formData.region,
-                tags: tags
-                    .split(",")
-                    .map((tag) => tag.trim())
-                    .filter(Boolean),
-            },
+            titre: formData.titre,
+            date: formData.date,
+            motCle: formData.motCle,
+            categorie: formData.categorie,
+            region: formData.region,
+            resume: formData.resume,
+            tags: formData.tags
         };
 
-        ajouterCritere(critere);
+        await ajouterCritere(critere);
 
+        // Reset
         setFormData({
             titre: "",
             date: "",
-            auteur: "",
-            summary: "",
+            motCle: "",
+            resume: "",
             categorie: "",
             region: "",
             tags: "",
@@ -88,19 +77,15 @@ export default function CriteriaForm() {
                 borderRadius: 3,
                 boxShadow: theme.shadows[4],
             }}
-            noValidate
         >
-            <Typography
-                variant="h5"
-                mb={3}
-                sx={{ color: theme.palette.primary.main, fontWeight: "bold" }}
-            >
+            <Typography variant="h5" mb={3} sx={{ color: theme.palette.primary.main }}>
                 Ajouter un critère
             </Typography>
 
             <Grid container spacing={2}>
-                {/* Chaque champ occupe toute la largeur */}
-                <Grid item xs={12}>
+
+                {/* Titre */}
+                <Grid size={{ xs: 12 }}>
                     <TextField
                         name="titre"
                         label="Titre"
@@ -108,7 +93,6 @@ export default function CriteriaForm() {
                         onChange={handleChange}
                         required
                         fullWidth
-                        placeholder="Titre"
                         size="small"
                         InputProps={{
                             startAdornment: (
@@ -120,7 +104,8 @@ export default function CriteriaForm() {
                     />
                 </Grid>
 
-                <Grid item xs={12}>
+                {/* Date */}
+                <Grid size={{ xs: 12 }}>
                     <TextField
                         name="date"
                         label="Date"
@@ -141,93 +126,15 @@ export default function CriteriaForm() {
                     />
                 </Grid>
 
-                <Grid item xs={12}>
+                {/* Mot-clé */}
+                <Grid size={{ xs: 12 }}>
                     <TextField
-                        name="auteur"
-                        label="Mot-clé"
-                        value={formData.auteur}
+                        name="motCle"
+                        label="Mot clé"
+                        value={formData.motCle}
                         onChange={handleChange}
                         fullWidth
                         size="small"
-                        placeholder="Ex: économie, politique"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <PersonIcon color="primary" />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <TextField
-                        name="categorie"
-                        label="Catégorie"
-                        value={formData.categorie}
-                        onChange={handleChange}
-                        fullWidth
-                        size="small"
-                        placeholder="Ex: Culture, Spiritualité"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <CategoryIcon color="primary" />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <TextField
-                        name="region"
-                        label="Région"
-                        value={formData.region}
-                        onChange={handleChange}
-                        fullWidth
-                        size="small"
-                        placeholder="Ex: Japon, Corée du Sud"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <LocationOnIcon color="primary" />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <TextField
-                        name="summary"
-                        label="Résumé"
-                        multiline
-                        rows={3}
-                        value={formData.summary}
-                        onChange={handleChange}
-                        fullWidth
-                        size="small"
-                        placeholder="Résumé du critère"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <DescriptionIcon color="primary" />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <TextField
-                        name="tags"
-                        label="Tags"
-                        value={formData.tags}
-                        onChange={handleChange}
-                        fullWidth
-                        size="small"
-                        placeholder="Séparez les tags par des virgules"
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -238,7 +145,87 @@ export default function CriteriaForm() {
                     />
                 </Grid>
 
-                <Grid item xs={12} sx={{ textAlign: "right" }}>
+                {/* Catégorie */}
+                <Grid size={{ xs: 12 }}>
+                    <TextField
+                        name="categorie"
+                        label="Catégorie"
+                        value={formData.categorie}
+                        onChange={handleChange}
+                        fullWidth
+                        size="small"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <CategoryIcon color="primary" />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Grid>
+
+                {/* Région */}
+                <Grid size={{ xs: 12 }}>
+                    <TextField
+                        name="region"
+                        label="Région"
+                        value={formData.region}
+                        onChange={handleChange}
+                        fullWidth
+                        size="small"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <LocationOnIcon color="primary" />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Grid>
+
+                {/* Résumé */}
+                <Grid size={{ xs: 12 }}>
+                    <TextField
+                        name="resume"
+                        label="Résumé"
+                        multiline
+                        rows={3}
+                        value={formData.resume}
+                        onChange={handleChange}
+                        fullWidth
+                        size="small"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <DescriptionIcon color="primary" />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Grid>
+
+                {/* Tags */}
+                <Grid size={{ xs: 12 }}>
+                    <TextField
+                        name="tags"
+                        label="Tags"
+                        value={formData.tags}
+                        onChange={handleChange}
+                        fullWidth
+                        size="small"
+                        placeholder="tag1, tag2"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <TagIcon color="primary" />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Grid>
+
+                {/* Bouton */}
+                <Grid size={{ xs: 12 }} sx={{ textAlign: "right" }}>
                     <Button
                         type="submit"
                         variant="contained"
@@ -249,7 +236,9 @@ export default function CriteriaForm() {
                         Ajouter
                     </Button>
                 </Grid>
+
             </Grid>
+
         </Box>
     );
 }

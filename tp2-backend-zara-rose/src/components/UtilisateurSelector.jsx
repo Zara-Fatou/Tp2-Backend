@@ -11,24 +11,15 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import { useTheme } from "@mui/material/styles";
 
-/**
- * Composant permettant de sélectionner un utilisateur dans une liste.
- * Met à jour le contexte utilisateur après validation.
- *
- * @component
- * @returns {JSX.Element} Élément JSX du sélecteur d'utilisateur.
- */
 export default function UtilisateurSelector() {
     const { users, currentUser, setCurrentUser } = useContext(UserContext);
     const [selectedId, setSelectedId] = useState(currentUser.id);
     const theme = useTheme();
 
-    // Met à jour l'ID sélectionné lors du changement dans le Select
     const handleChange = (event) => {
         setSelectedId(event.target.value);
     };
 
-    // Applique l'utilisateur sélectionné au contexte
     const handleConfirm = () => {
         const selectedUser = users.find((u) => u.id === selectedId);
         if (selectedUser) {
@@ -38,12 +29,12 @@ export default function UtilisateurSelector() {
 
     return (
         <Stack direction="row" spacing={1} alignItems="center">
-            {/* Titre du sélecteur */}
-            <Typography variant="body2" sx={{ color: "white", fontWeight: 500 }}>
-                <h4> Sélectionnez un utilisateur :</h4>
+
+            {/* TITRE – corrigé, sans div ni h4 */}
+            <Typography variant="h6" sx={{ color: "white", fontWeight: 600 }}>
+                Sélectionnez un utilisateur :
             </Typography>
 
-            {/* Menu déroulant des utilisateurs */}
             <FormControl size="small" sx={{ minWidth: 160 }}>
                 <Select
                     value={selectedId}
@@ -63,7 +54,6 @@ export default function UtilisateurSelector() {
                 </Select>
             </FormControl>
 
-            {/* Bouton de validation */}
             <Button
                 variant="contained"
                 color="secondary"

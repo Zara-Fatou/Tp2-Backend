@@ -29,6 +29,7 @@ public class UserController {
         return utilisateurRepository.findAll();
     }
 
+
     @GetMapping("/recherche")
     public Utilisateur getUserByUsername(@RequestParam String nom) {
         log.info("Recherche utilisateur par nom: {}", nom);

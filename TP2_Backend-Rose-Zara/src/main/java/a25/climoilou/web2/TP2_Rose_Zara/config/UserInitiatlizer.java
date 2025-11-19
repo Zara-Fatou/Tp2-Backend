@@ -6,16 +6,23 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
 public class UserInitiatlizer {
 
+
+    /**
+     *
+     * @param userRepository
+     * @return
+     */
     @Bean
     public CommandLineRunner initUser(UserRepository userRepository) {
         return args -> {
-            if (userRepository.count() == 0) {
+
+            if (userRepository.findAll().isEmpty()) {
+
                 List<Utilisateur> utilisateurs = List.of(
                         new Utilisateur(1L, "Admin Principal", "admin"),
                         new Utilisateur(2L, "Zara", "journaliste"),
@@ -24,7 +31,8 @@ public class UserInitiatlizer {
                 );
 
                 userRepository.saveAll(utilisateurs);
-                System.out.println("✅ Utilisateurs initiaux insérés : Admin, Zara, Rose, Martin");
+
+                System.out.println("Utilisateurs initiaux insérés en mémoire : Admin, Zara, Rose, Martin");
             }
         };
     }
