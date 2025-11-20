@@ -1,15 +1,14 @@
-import "./App.css";
 import {useEffect, useState} from "react";
-import { UserProvider } from "/src/context/UserContext.jsx";
-import { CriteriaProvider } from "/src/context/CriteriaContext.jsx";
-import { ThemeProvider } from "/src/context/ThemeContext.jsx";
-import BottomItem from "/src/components/BottomItem.jsx";
-import NouvelleCarte from "/src/components/NouvelleCarte.jsx";
-import NouvelleListe from "/src/components/NouvelleListe.jsx";
-import ButtonAppBar from "/src/components/ButtonAppBar.jsx";
-import CriteriaForm from "/src/components/CriteriaForm.jsx";
-import CriteriaResult from "/src/components/CriteriaResult.jsx";
-import Statistiques from "/src/components/Statistiques.jsx";
+import { UserProvider } from "./context/UserContext.jsx";
+import { CriteriaProvider } from "./context/CriteriaContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
+import BottomItem from "./components/BottomItem.jsx";
+import NouvelleCarte from "./components/NouvelleCarte.jsx";
+import NouvelleListe from "./components/NouvelleListe.jsx";
+import ButtonAppBar from "./components/ButtonAppBar.jsx";
+import CriteriaForm from "./components/CriteriaForm.jsx";
+import CriteriaResult from "./components/CriteriaResult.jsx";
+import Statistiques from "./components/Statistiques.jsx";
 
 import {
     Box,
@@ -25,7 +24,7 @@ import {
     deleteNouvelle,
     fetchAvailableNouvelleAsync,
     updateNouvelle
-} from "/src/scripts/http.js";
+} from "./scripts/http.js";
 
 /**
  * Composant principal de l'application.
