@@ -161,6 +161,48 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- Pour automatiser la construction de l'image et le lancement du container dans
+docker-->
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.45.0</version>
+				<configuration>
+					<images>
+						<image>
+							<name>fabric8/tp2_rgcg-zf:${project.version}</name>
+							<build>
+								<dockerFileDir>${project.basedir}</dockerFileDir>
+							</build>
+							<run>
+								<ports>
+									<port>8080:8080</port>
+									<port>5005:5005</port>
+								</ports>
+								<volumes>
+									<bind>
+										<volume>${project.basedir}/data:/app/data</volume>
+									</bind>
+								</volumes>
+								<env>
+									<TEST>test</TEST>
+								</env>
+							</run>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>start</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
