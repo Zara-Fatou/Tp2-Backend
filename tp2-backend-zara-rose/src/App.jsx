@@ -1,17 +1,15 @@
 import "./App.css";
 import {useEffect, useState} from "react";
-
-import {UserProvider} from "./context/UserContext.jsx";
-import {ThemeProvider} from "./context/ThemeContext.jsx";
-import CriteriaProvider from "./context/CriteriaProvider.jsx";
-
-import BottomItem from "./components/BottomItem.jsx";
-import NouvelleCarte from "./components/NouvelleCarte.jsx";
-import NouvelleListe from "./components/NouvelleListe.jsx";
-import ButtonAppBar from "./components/ButtonAppBar.jsx";
-import CriteriaForm from "./components/CriteriaForm.jsx";
-import CriteriaResult from "./components/CriteriaResult.jsx";
-import Statistiques from "./components/Statistiques.jsx";
+import { UserProvider } from "/src/context/UserContext.jsx";
+import { CriteriaProvider } from "/src/context/CriteriaContext.jsx";
+import { ThemeProvider } from "/src/context/ThemeContext.jsx";
+import BottomItem from "/src/components/BottomItem.jsx";
+import NouvelleCarte from "/src/components/NouvelleCarte.jsx";
+import NouvelleListe from "/src/components/NouvelleListe.jsx";
+import ButtonAppBar from "/src/components/ButtonAppBar.jsx";
+import CriteriaForm from "/src/components/CriteriaForm.jsx";
+import CriteriaResult from "/src/components/CriteriaResult.jsx";
+import Statistiques from "/src/components/Statistiques.jsx";
 
 import {
     Box, Grid, Container, Paper, Typography, CssBaseline,
@@ -24,6 +22,23 @@ import {
     updateNouvelle
 } from "./scripts/http.js";
 
+/**
+ * Composant principal de l'application.
+ *
+ * Fonctionnalités principales :
+ * - Gestion des **nouvelles culturelles** (articles) : ajout, édition, suppression.
+ * - Navigation entre plusieurs pages : accueil, statistiques, etc.
+ * - Fournit les contextes globaux : Thème, Utilisateur, Critères.
+ * - Structure la mise en page avec une barre de navigation, contenu central, drawer (ajout) et pied de page.
+ *
+ * États internes :
+ * - `nouvelles` : liste des articles.
+ * - `nouvelleEnEdition` : article actuellement modifié.
+ * - `pageActuelle` : navigation (accueil, statistiques).
+ * - `openDrawer` : affichage du panneau latéral.
+ *
+ * @returns {JSX.Element} L’interface principale de l’application.
+ */
 function App() {
 
     const [nouvelles, setNouvelles] = useState([]);
@@ -74,6 +89,9 @@ function App() {
             setError({error: err.name, message: err.message});
         }
     };
+
+
+    const handleAnnulerEdition = () => setNouvelleEnEdition(null);
 
     return (
         <ThemeProvider>

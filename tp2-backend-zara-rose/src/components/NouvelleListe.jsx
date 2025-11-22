@@ -20,11 +20,10 @@ import {addNouvelle} from "../scripts/http.js";
  *
  * @component
  * @param {Object} props - Propriétés du composant
- * @param {Array} props.nouvelles - Liste actuelle des nouvelles
  * @param {Function} props.setNouvelles - Setter pour mettre à jour les nouvelles
  * @returns {JSX.Element}
  */
-export default function NouvelleListe({ nouvelles, setNouvelles }) {
+export default function NouvelleListe({setNouvelles }) {
     const { currentUser } = useContext(UserContext);
 
     /**
