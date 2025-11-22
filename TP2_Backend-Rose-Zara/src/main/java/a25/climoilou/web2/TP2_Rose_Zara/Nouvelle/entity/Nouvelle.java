@@ -9,6 +9,19 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Représente une nouvelle culturelle enregistrée dans la base de données.
+ *
+ * Cette classe est une entité JPA. Chaque nouvelle contient :
+ * - un identifiant généré automatiquement
+ * - un identifiant d'auteur
+ * - une date
+ * - un titre unique
+ * - un lien d'image
+ * - un texte complet
+ * - un résumé
+ * - des tags permettant de classer la nouvelle
+ */
 
 @Entity
 public class Nouvelle {

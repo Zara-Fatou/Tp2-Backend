@@ -11,6 +11,13 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Initialise les données de base pour les nouvelles au démarrage de l'application.
+ * Cette classe ajoute automatiquement des nouvelles dans la base de données
+ * seulement si celle-ci est vide. Elle permet de démarrer le projet avec
+ * un ensemble d'exemples déjà prêts.
+ */
+
 @Component
 public class NouvelleInitializer {
 

@@ -10,6 +10,13 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gère les erreurs liées aux nouvelles dans l'application.
+ *
+ * Cette classe intercepte les exceptions qui surviennent dans les
+ * contrôleurs et renvoie une réponse claire au frontend
+ */
+
 @RestControllerAdvice
 public class NouvelleExceptionHandler {
 

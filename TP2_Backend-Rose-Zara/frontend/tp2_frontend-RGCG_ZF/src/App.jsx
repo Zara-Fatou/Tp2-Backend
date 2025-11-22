@@ -29,19 +29,14 @@ import {
 /**
  * Composant principal de l'application.
  *
- * Fonctionnalités principales :
- * - Gestion des **nouvelles culturelles** (articles) : ajout, édition, suppression.
- * - Navigation entre plusieurs pages : accueil, statistiques, etc.
- * - Fournit les contextes globaux : Thème, Utilisateur, Critères.
- * - Structure la mise en page avec une barre de navigation, contenu central, drawer (ajout) et pied de page.
+ * Il gère :
+ * - l'affichage des nouvelles
+ * - l'ajout, l'édition et la suppression
+ * - la navigation entre l'accueil et les statistiques
+ * - l'affichage du drawer pour ajouter des nouvelles
  *
- * États internes :
- * - `nouvelles` : liste des articles.
- * - `nouvelleEnEdition` : article actuellement modifié.
- * - `pageActuelle` : navigation (accueil, statistiques).
- * - `openDrawer` : affichage du panneau latéral.
- *
- * @returns {JSX.Element} L’interface principale de l’application.
+ * Il charge aussi les données au début (fetch) et fournit
+ * les différents contextes : utilisateur, critères et thème.
  */
 function App() {
 

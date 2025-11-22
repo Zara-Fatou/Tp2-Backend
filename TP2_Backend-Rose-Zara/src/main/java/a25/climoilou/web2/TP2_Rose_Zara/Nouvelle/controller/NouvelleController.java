@@ -11,6 +11,20 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
+/**
+ * Contrôleur REST permettant de gérer les nouvelles.
+ *
+ * Cette classe offre les opérations principales :
+ * - afficher toutes les nouvelles
+ * - ajouter une nouvelle
+ * - supprimer une nouvelle
+ * - modifier une nouvelle partiellement (PATCH)
+ *
+ * Toutes les routes sont sous "/nouvelles".
+ * Le contrôleur utilise un validateur et un repository JPA pour appliquer les règles
+ * et accéder aux données.
+ */
+
 @CrossOrigin
 @RestController
 @RequestMapping("/nouvelles")
@@ -25,11 +39,27 @@ public class NouvelleController {
         this.nouvelleRepository = nouvelleRepository;
     }
 
+    /**
+     * Retourne la liste complète des nouvelles.
+     *
+     * @return une collection de nouvelles en format JSON
+     */
+
     @GetMapping(produces = "application/json")
     public Collection<Nouvelle> listAllNouvelles() {
         logger.info("listAllNouvelles avec JPA");
         return (Collection<Nouvelle>) nouvelleRepository.findAll();
     }
+
+    /**
+     * Ajoute une nouvelle dans la base de données.
+     *
+     * L'information reçue dans le corps de la requête est validée
+     * avant d'être sauvegardée.
+     *
+     * @param nouvelle nouvelle reçue du client
+     * @return la nouvelle enregistrée avec son id généré
+     */
 
     @PostMapping("/ajout")
     public Nouvelle ajouterNouvelle(@RequestBody Nouvelle nouvelle) {
@@ -39,6 +69,14 @@ public class NouvelleController {
         logger.info("Nouvelle sauvegardée : {}", nouvelleEnregistree.getTitre());
         return nouvelleEnregistree;
     }
+
+    /**
+     * Supprime une nouvelle selon son identifiant.
+     *
+     * Si l'id n'existe pas, une exception est lancée.
+     *
+     * @param id identifiant de la nouvelle à supprimer
+     */
 
     @DeleteMapping("/delete/{id}")
     public void deleteNouvelle(@PathVariable Long id) {
@@ -52,6 +90,17 @@ public class NouvelleController {
 
         }
     }
+
+    /**
+     * Met à jour partiellement une nouvelle existante.
+     *
+     * Seuls les champs présents dans la requête sont modifiés.
+     * La nouvelle finale est validée avant l'enregistrement.
+     *
+     * @param nouvelle nouvelle contenant les champs modifiés
+     * @param id identifiant de la nouvelle cible
+     * @return la nouvelle mise à jour
+     */
 
     @PatchMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
     public Nouvelle updateNouvelle(@RequestBody Nouvelle nouvelle, @PathVariable Long id) {

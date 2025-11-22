@@ -7,11 +7,33 @@ import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 
+/**
+ * Valide les informations d'une nouvelle avant son enregistrement.
+ *
+ * Cette classe vérifie que chaque champ d'une nouvelle respecte les règles
+ * minimales
+
+ */
 
 @Component
 @Validated
 public class NouvelleValidateur {
 
+
+    /**
+     * Vérifie que la nouvelle contient des informations valides.
+     *
+     * Chaque champ est contrôlé :
+     * - l'auteur doit être présent
+     * - la date ne doit pas être dans le futur
+     * - le titre doit avoir au moins 3 caractères
+     * - l'image doit commencer par "http"
+     * - le résumé doit être assez long
+     * - les tags ne doivent pas être vides
+     *
+     * @param nouvelle la nouvelle à valider
+     * @throws NouvelleInformationInvalidException si un champ est invalide
+     */
     public void validerNouvelle(Nouvelle nouvelle) {
 
         if (nouvelle.getId_auteur() == null) {
