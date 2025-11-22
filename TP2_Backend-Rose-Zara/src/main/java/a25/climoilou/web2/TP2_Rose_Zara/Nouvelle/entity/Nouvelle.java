@@ -63,7 +63,8 @@ public class Nouvelle {
     @Setter
     private List<String> tags;
 
-    public Nouvelle(LocalDate date, String titre, String image, String text, String summary, List<String> tags) {
+    public Nouvelle(Long id_auteur, LocalDate date, String titre, String image, String text, String summary, List<String> tags) {
+        this.id_auteur = id_auteur;
         this.date = date;
         this.titre = titre;
         this.image = image;

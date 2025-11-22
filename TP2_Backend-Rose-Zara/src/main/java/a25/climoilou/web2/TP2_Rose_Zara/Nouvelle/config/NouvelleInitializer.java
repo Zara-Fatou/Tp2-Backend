@@ -43,7 +43,7 @@ public class NouvelleInitializer {
 
         List<Nouvelle> nouvelles = Arrays.asList(
 
-                new Nouvelle(
+                new Nouvelle(4L,
                         LocalDate.of(2023, 5, 10),
                         "Temple au Japon (Kyoto)",
                         "https://www.jal.co.jp/fr/fr/guide-to-japan/destinations/articles/kyoto/5-must-see-temples-in-ancient-capital/_jcr_content/root/responsivegrid/sectioncontainer/image_16758543.coreimg.jpeg/1701399163776.jpeg",
@@ -53,7 +53,7 @@ public class NouvelleInitializer {
                         "Un temple emblématique de Kyoto, entre spiritualité et panorama.",
                         Arrays.asList("Japon", "Culture", "Tourisme", "Architecture")),
 
-                new Nouvelle(
+                new Nouvelle(2L,
                         LocalDate.of(2022, 3, 28),
                         "Cerisiers en fleurs – Tokyo",
                         "https://guideaujapon.b-cdn.net/wp-content/uploads/2021/11/cerisiers-cimetiere-aoyama-tokyo-1030x687.jpg",
@@ -61,7 +61,7 @@ public class NouvelleInitializer {
                         "Tokyo célèbre le hanami sous les cerisiers en fleurs.",
                         Arrays.asList("Japon", "Nature", "Tourisme", "Saison")),
 
-                new Nouvelle(
+                new Nouvelle(3L,
                         LocalDate.of(2021, 11, 22),
                         "Mont Fuji – Japon",
                         "https://cdn.futura-sciences.com/sources/images/cerisier-japon-fuji-min.jpeg",
@@ -69,7 +69,7 @@ public class NouvelleInitializer {
                         "Le Mont Fuji, entre légende et nature.",
                         Arrays.asList("Japon", "Nature", "Tourisme", "Paysage")),
 
-                new Nouvelle(
+                new Nouvelle(4L,
                         LocalDate.of(2020, 12, 5),
                         "Quartier Shibuya – Tokyo",
                         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/7c/eb/cb/photo0jpg.jpg?w=800&h=500&s=1",
@@ -77,7 +77,7 @@ public class NouvelleInitializer {
                         "Shibuya, le carrefour le plus animé du monde.",
                         Arrays.asList("Japon", "Urbain", "Tourisme", "Architecture", "Jeunesse")),
 
-                new Nouvelle(
+                new Nouvelle(2L,
                         LocalDate.of(2021, 9, 15),
                         "Palais Gyeongbokgung – Séoul",
                         "https://www.koreaetour.com/wp-content/uploads/2012/06/%EA%B2%BD%EB%B3%B5%EA%B6%81-4-e1523426074381.jpg",
@@ -85,7 +85,7 @@ public class NouvelleInitializer {
                         "Un palais majestueux au cœur de Séoul.",
                         Arrays.asList("Corée du Sud", "Culture", "Tourisme", "Histoire", "Architecture")),
 
-                new Nouvelle(
+                new Nouvelle(3L,
                         LocalDate.of(2019, 6, 12),
                         "Marché traditionnel coréen (Namdaemun)",
                         "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/250000/250114-Namdaemun-Market.jpg",
@@ -93,7 +93,7 @@ public class NouvelleInitializer {
                         "Namdaemun, le marché aux mille saveurs.",
                         Arrays.asList("Corée du Sud", "Culture", "Histoire")),
 
-                new Nouvelle(
+                new Nouvelle(4L,
                         LocalDate.of(2017, 4, 30),
                         "Festival des lanternes – Corée du Sud",
                         "https://www.coree-culture.org/IMG/jpg/2-39.jpg",
@@ -101,7 +101,7 @@ public class NouvelleInitializer {
                         "Des lanternes pour célébrer la lumière spirituelle.",
                         Arrays.asList("Corée du Sud", "Culture", "Tourisme", "Festival")),
 
-                new Nouvelle(
+                new Nouvelle(2L,
                         LocalDate.of(2019, 7, 10),
                         "Sushi traditionnel – Japon",
                         "https://sushishop.com/wp-content/uploads/2025/02/SS25_UEAT_VDAY_1024x1024-1-705x705.jpg",
@@ -109,7 +109,7 @@ public class NouvelleInitializer {
                         "Le sushi, art culinaire japonais.",
                         Arrays.asList("Japon", "Culture", "Gastronomie")),
 
-                new Nouvelle(
+                new Nouvelle(3L,
                         LocalDate.of(2023, 10, 25),
                         "La rue Takeshita à Harajuku, Tokyo",
                         "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/03/a0003702/img/en/a0003702_main.jpg?20200618143422&q=80",
@@ -122,7 +122,7 @@ public class NouvelleInitializer {
                         "Harajuku, le style en pleine rue.",
                         Arrays.asList("Japon", "Urbain", "Jeunesse")),
 
-                new Nouvelle(
+                new Nouvelle(4L,
                         LocalDate.of(2024, 2, 28),
                         "Village traditionnel de Bukchon Hanok, Séoul",
                         "https://b1945558.smushcdn.com/1945558/wp-content/uploads/2019/12/bukchon-hanok-village-gahoe-dong-seoul-hanbok.jpg?lossy=2&strip=1&webp=1",

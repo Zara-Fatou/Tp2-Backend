@@ -1,7 +1,9 @@
-package a25.climoilou.web2.TP2_Rose_Zara.validation;
+package a25.climoilou.web2.TP2_Rose_Zara.Critere.validation;
 
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
-import a25.climoilou.web2.TP2_Rose_Zara.exception.CriteriaInvalidException;
+
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.entity.Criteria;
+
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.exception.CriteriaInvalidException;
 import org.springframework.stereotype.Component;
 
 /**

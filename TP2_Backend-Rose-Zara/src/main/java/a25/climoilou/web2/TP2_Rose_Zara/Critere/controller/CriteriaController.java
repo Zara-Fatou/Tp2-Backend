@@ -1,10 +1,11 @@
-package a25.climoilou.web2.TP2_Rose_Zara.controller;
+package a25.climoilou.web2.TP2_Rose_Zara.Critere.controller;
 
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
-import a25.climoilou.web2.TP2_Rose_Zara.repository.CriteriaRepository;
-import a25.climoilou.web2.TP2_Rose_Zara.validation.CriteriaValidateur;
-import a25.climoilou.web2.TP2_Rose_Zara.config.CriteriaInitializer;
 
+
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.config.CriteriaInitializer;
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.entity.Criteria;
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.repository.CriteriaRepository;
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.validation.CriteriaValidateur;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package a25.climoilou.web2.TP2_Rose_Zara.controller;
+package a25.climoilou.web2.TP2_Rose_Zara.Utilisateur.controller;
 
+import a25.climoilou.web2.TP2_Rose_Zara.Utilisateur.entity.Utilisateur;
 import a25.climoilou.web2.TP2_Rose_Zara.data.UserStore;
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Utilisateur;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

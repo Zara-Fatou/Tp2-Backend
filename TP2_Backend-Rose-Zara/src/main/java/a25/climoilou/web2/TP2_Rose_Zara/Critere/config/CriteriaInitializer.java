@@ -1,7 +1,7 @@
-package a25.climoilou.web2.TP2_Rose_Zara.config;
+package a25.climoilou.web2.TP2_Rose_Zara.Critere.config;
 
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
-import a25.climoilou.web2.TP2_Rose_Zara.repository.CriteriaRepository;
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.entity.Criteria;
+import a25.climoilou.web2.TP2_Rose_Zara.Critere.repository.CriteriaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

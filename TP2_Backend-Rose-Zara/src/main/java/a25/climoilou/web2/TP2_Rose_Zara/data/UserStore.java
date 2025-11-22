@@ -1,6 +1,7 @@
 package a25.climoilou.web2.TP2_Rose_Zara.data;
 
-import a25.climoilou.web2.TP2_Rose_Zara.entity.Utilisateur;
+import a25.climoilou.web2.TP2_Rose_Zara.Utilisateur.entity.Utilisateur;
+
 import java.util.List;
 
 /**
