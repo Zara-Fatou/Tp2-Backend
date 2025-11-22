@@ -34,6 +34,7 @@ export default function CriteriaProvider({ children }) {
         setCriteres((avant) => [...avant, nouveau]);
     };
 
+
     const supprimer = async (id) => {
         await supprimerCritereFetch(id);
         setCriteres((avant) => avant.filter((c) => c.idCritere !== id));

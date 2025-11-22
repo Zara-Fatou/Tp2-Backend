@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import {useContext} from "react";
 import {
     Box,
     Typography,
@@ -9,15 +9,15 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { CriteriaContext } from "../context/CriteriaContext.jsx";
+import {CriteriaContext} from "../context/CriteriaContext.jsx";
 
 export default function CriteriaResult() {
 
-    const { criteres, supprimerCritere } = useContext(CriteriaContext);
+    const {criteres, supprimerCritere} = useContext(CriteriaContext);
 
     return (
-        <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" gutterBottom sx={{ color: "#6a1b9a" }}>
+        <Box sx={{mt: 4}}>
+            <Typography variant="h6" gutterBottom sx={{color: "#6a1b9a"}}>
                 Critères actifs
             </Typography>
 
@@ -31,7 +31,7 @@ export default function CriteriaResult() {
                         variant="outlined"
                         color="error"
                         onClick={() => criteres.forEach(c => supprimerCritere(c.idCritere))}
-                        sx={{ mb: 2 }}
+                        sx={{mb: 2}}
                     >
                         Réinitialiser tous les critères
                     </Button>
@@ -40,12 +40,12 @@ export default function CriteriaResult() {
                         <Paper
                             key={critere.idCritere}
                             elevation={2}
-                            sx={{ mb: 2, p: 2, backgroundColor: "#fce4ec" }}
+                            sx={{mb: 2, p: 2, backgroundColor: "#fce4ec"}}
                         >
                             <Stack direction="row" justifyContent="space-between" alignItems="center">
 
                                 <Box>
-                                    <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                                    <Typography variant="subtitle1" sx={{fontWeight: "bold"}}>
                                         {critere.titre}
                                     </Typography>
 
@@ -65,11 +65,11 @@ export default function CriteriaResult() {
                                         Région : {critere.region}
                                     </Typography>
 
-                                    <Typography variant="body2" sx={{ fontStyle: "italic", color: "#777" }}>
+                                    <Typography variant="body2" sx={{fontStyle: "italic", color: "#777"}}>
                                         Tags : {critere.tags}
                                     </Typography>
 
-                                    <Typography variant="caption" sx={{ color: "#999" }}>
+                                    <Typography variant="caption" sx={{color: "#999"}}>
                                         ID Critère : {critere.idCritere}
                                     </Typography>
                                 </Box>
@@ -78,7 +78,7 @@ export default function CriteriaResult() {
                                     color="error"
                                     onClick={() => supprimerCritere(critere.idCritere)}
                                 >
-                                    <DeleteIcon />
+                                    <DeleteIcon/>
                                 </IconButton>
                             </Stack>
                         </Paper>

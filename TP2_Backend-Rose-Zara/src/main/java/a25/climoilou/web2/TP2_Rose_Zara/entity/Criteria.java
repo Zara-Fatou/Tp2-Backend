@@ -1,5 +1,6 @@
 package a25.climoilou.web2.TP2_Rose_Zara.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,8 +20,8 @@ public class Criteria {
     @Setter
     private String titre;
 
-    @Getter
-    @Setter
+    @Getter @Setter
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Getter

@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:8080";
 
 
 /**
- *
+ * Récupère toutes les nouvelles depuis le backend.
  * @returns {Promise<any>}
  */
 export async function fetchAvailableNouvelleAsync() {
@@ -15,7 +15,7 @@ export async function fetchAvailableNouvelleAsync() {
 }
 
 /**
- *
+ * Ajoute une nouvelle au backend.
  * @param nouvelle
  * @returns {Promise<any>}
  */
@@ -37,7 +37,7 @@ export async function addNouvelle(nouvelle) {
 }
 
 /**
- *
+ * Supprime une nouvelle par son id.
  * @param id
  * @returns {Promise<void>}
  */
@@ -53,7 +53,7 @@ export async function deleteNouvelle(id) {
 }
 
 /**
- *
+ * Met à jour une nouvelle partiellement.
  * @param id
  * @param nouvellePartielle
  * @returns {Promise<any>}
@@ -76,7 +76,7 @@ export async function updateNouvelle(id, nouvellePartielle) {
 }
 
 /**
- *
+ * Récupère tous les critères du backend.
  * @returns {Promise<any>}
  */
 export async function fetchAvailableCriteriaAsync() {
@@ -91,12 +91,12 @@ export async function fetchAvailableCriteriaAsync() {
 }
 
 /**
- *
+ * Ajoute un critère au backend.
  * @param critere
  * @returns {Promise<any>}
  */
 export async function ajouterCritereFetch(critere) {
-    const rep = await fetch(`${BASE_URL}/criteres`, {
+    const rep = await fetch(`${BASE_URL}/criteres/post`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(critere)
@@ -109,7 +109,7 @@ export async function ajouterCritereFetch(critere) {
 
 
 /**
- *
+ * Supprime un critère via son id.
  * @param id
  * @returns {Promise<any|null>}
  */
@@ -117,21 +117,22 @@ export async function supprimerCritereFetch(id) {
     const rep = await fetch(`${BASE_URL}/criteres/delete/${id}`, {
         method: "DELETE"
     });
+
     if (!rep.ok) {
         throw new Error(`Échec de la suppression (HTTP ${rep.status})`);
     }
-    // Si le backend renvoie du JSON, on le lit; sinon on renvoie null
+
     try {
         return await rep.json();
     } catch {
         return null;
     }
-
-
 }
 
+
+
 /**
- *
+ * Récupère tous les utilisateurs disponibles.
  * @returns {Promise<any>}
  */
 export async function fetchAvailableUserAsync() {

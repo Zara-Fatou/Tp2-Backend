@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import {useState, useContext} from "react";
 import {
     Box,
     TextField,
@@ -9,7 +9,7 @@ import {
     useTheme,
 } from "@mui/material";
 
-import { CriteriaContext } from "../context/CriteriaContext.jsx";
+import {CriteriaContext} from "../context/CriteriaContext.jsx";
 
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CategoryIcon from "@mui/icons-material/Category";
@@ -20,7 +20,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 
 export default function CriteriaForm() {
 
-    const { ajouterCritere } = useContext(CriteriaContext);
+    const {ajouterCritere} = useContext(CriteriaContext);
     const theme = useTheme();
 
     const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ export default function CriteriaForm() {
     });
 
     const handleChange = (e) => {
-        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        setFormData((prev) => ({...prev, [e.target.name]: e.target.value}));
     };
 
     const handleSubmit = async (event) => {
@@ -52,7 +52,6 @@ export default function CriteriaForm() {
 
         await ajouterCritere(critere);
 
-        // Reset
         setFormData({
             titre: "",
             date: "",
@@ -78,14 +77,14 @@ export default function CriteriaForm() {
                 boxShadow: theme.shadows[4],
             }}
         >
-            <Typography variant="h5" mb={3} sx={{ color: theme.palette.primary.main }}>
+            <Typography variant="h5" mb={3} sx={{color: theme.palette.primary.main}}>
                 Ajouter un critère
             </Typography>
 
             <Grid container spacing={2}>
 
                 {/* Titre */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="titre"
                         label="Titre"
@@ -97,7 +96,7 @@ export default function CriteriaForm() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <TitleIcon color="primary" />
+                                    <TitleIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -105,7 +104,7 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Date */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="date"
                         label="Date"
@@ -115,11 +114,11 @@ export default function CriteriaForm() {
                         required
                         fullWidth
                         size="small"
-                        InputLabelProps={{ shrink: true }}
+                        InputLabelProps={{shrink: true}}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <CalendarTodayIcon color="primary" />
+                                    <CalendarTodayIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -127,7 +126,7 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Mot-clé */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="motCle"
                         label="Mot clé"
@@ -138,7 +137,7 @@ export default function CriteriaForm() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <TagIcon color="primary" />
+                                    <TagIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -146,7 +145,7 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Catégorie */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="categorie"
                         label="Catégorie"
@@ -157,7 +156,7 @@ export default function CriteriaForm() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <CategoryIcon color="primary" />
+                                    <CategoryIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -165,7 +164,7 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Région */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="region"
                         label="Région"
@@ -176,7 +175,7 @@ export default function CriteriaForm() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <LocationOnIcon color="primary" />
+                                    <LocationOnIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -184,7 +183,7 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Résumé */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="resume"
                         label="Résumé"
@@ -197,7 +196,7 @@ export default function CriteriaForm() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <DescriptionIcon color="primary" />
+                                    <DescriptionIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -205,7 +204,7 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Tags */}
-                <Grid size={{ xs: 12 }}>
+                <Grid item xs={12}>
                     <TextField
                         name="tags"
                         label="Tags"
@@ -217,7 +216,7 @@ export default function CriteriaForm() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <TagIcon color="primary" />
+                                    <TagIcon color="primary"/>
                                 </InputAdornment>
                             ),
                         }}
@@ -225,13 +224,13 @@ export default function CriteriaForm() {
                 </Grid>
 
                 {/* Bouton */}
-                <Grid size={{ xs: 12 }} sx={{ textAlign: "right" }}>
+                <Grid item xs={12} sx={{textAlign: "right"}}>
                     <Button
                         type="submit"
                         variant="contained"
                         color="primary"
                         size="medium"
-                        sx={{ fontWeight: "bold", px: 5 }}
+                        sx={{fontWeight: "bold", px: 5}}
                     >
                         Ajouter
                     </Button>

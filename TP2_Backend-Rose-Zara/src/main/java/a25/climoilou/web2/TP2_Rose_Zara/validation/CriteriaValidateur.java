@@ -4,90 +4,53 @@ import a25.climoilou.web2.TP2_Rose_Zara.entity.Criteria;
 import a25.climoilou.web2.TP2_Rose_Zara.exception.CriteriaInvalidException;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 /**
- * Valide tous les champs d’un critère.
- * Accumule les erreurs et lance une exception si nécessaire.
+ * Classe responsable de valider les champs d’un critère avant sauvegarde.
+ * Si un ou plusieurs champs sont invalides, une exception contenant
+ * toutes les erreurs est envoyée au contrôleur.
  */
 @Component
 public class CriteriaValidateur {
 
     /**
-     * Vérifie chaque champ du critère et lance une exception si un champ est invalide.
+     * Valide un critère complet et accumule toutes les erreurs.
+     *
+     * @param critere Le critère reçu du frontend
+     * @throws CriteriaInvalidException si un champ obligatoire est vide ou incorrect
      */
     public void validateurCritere(Criteria critere) {
 
         StringBuilder erreurs = new StringBuilder();
 
-        erreurs.append(validateTitre(critere.getTitre()));
-        erreurs.append(validateDate(critere.getDate()));
-        erreurs.append(validateMotCle(critere.getMotCle()));
-        erreurs.append(validateCategorie(critere.getCategorie()));
-        erreurs.append(validateRegion(critere.getRegion()));
-        erreurs.append(validateResume(critere.getResume()));
-        erreurs.append(validateTags(critere.getTags()));
+        // Vérification des champs texte
+        erreurs.append(validateNotEmpty(critere.getTitre(), "Titre"));
+        erreurs.append(validateNotEmpty(critere.getMotCle(), "Mot-clé"));
+        erreurs.append(validateNotEmpty(critere.getCategorie(), "Catégorie"));
+        erreurs.append(validateNotEmpty(critere.getRegion(), "Région"));
+        erreurs.append(validateNotEmpty(critere.getResume(), "Résumé"));
+        erreurs.append(validateNotEmpty(critere.getTags(), "Tags"));
 
+        // Vérification de la date
+        if (critere.getDate() == null) {
+            erreurs.append("Date invalide\n");
+        }
+
+        // Si une erreur est présente → Exception envoyée au frontend
         if (!erreurs.isEmpty()) {
             throw new CriteriaInvalidException(erreurs.toString());
         }
     }
 
     /**
-     * Valide le titre (non vide et longueur minimale).
+     * Vérifie qu’un champ n’est pas vide.
+     *
+     * @param val valeur du champ
+     * @param fieldName nom affiché dans les messages d’erreur
+     * @return un message d’erreur (ou vide si valide)
      */
-    public String validateTitre(String titre) {
-        return titre != null && titre.length() > 2
-                ? "" : "Titre invalide\n";
-    }
-
-    /**
-     * Valide que la date est dans une plage réaliste.
-     */
-    public String validateDate(LocalDate date) {
-        return date != null &&
-                date.isBefore(LocalDate.now()) &&
-                date.isAfter(LocalDate.of(1970, 1, 1))
-                ? "" : "Date invalide\n";
-    }
-
-    /**
-     * Valide le mot-clé (présent et assez long).
-     */
-    public String validateMotCle(String motCle) {
-        return motCle != null && motCle.length() > 2
-                ? "" : "Mot-clé invalide\n";
-    }
-
-    /**
-     * Valide la catégorie (texte non vide).
-     */
-    public String validateCategorie(String categorie) {
-        return categorie != null && categorie.length() > 2
-                ? "" : "Catégorie invalide\n";
-    }
-
-    /**
-     * Valide la région (présente et longueur minimale).
-     */
-    public String validateRegion(String region) {
-        return region != null && region.length() > 2
-                ? "" : "Région invalide\n";
-    }
-
-    /**
-     * Valide le résumé (contenu minimal requis).
-     */
-    public String validateResume(String resume) {
-        return resume != null && resume.length() > 5
-                ? "" : "Résumé invalide\n";
-    }
-
-    /**
-     * Valide la présence d’au moins un tag.
-     */
-    public String validateTags(String tags) {
-        return tags != null && !tags.trim().isEmpty()
-                ? "" : "Tags invalides\n";
+    private String validateNotEmpty(String val, String fieldName) {
+        return (val != null && !val.trim().isEmpty())
+                ? ""
+                : fieldName + " invalide\n";
     }
 }

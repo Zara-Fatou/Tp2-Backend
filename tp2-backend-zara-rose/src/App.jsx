@@ -1,8 +1,8 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
-import { UserProvider } from "./context/UserContext.jsx";
-import { ThemeProvider } from "./context/ThemeContext.jsx";
+import {UserProvider} from "./context/UserContext.jsx";
+import {ThemeProvider} from "./context/ThemeContext.jsx";
 import CriteriaProvider from "./context/CriteriaProvider.jsx";
 
 import BottomItem from "./components/BottomItem.jsx";
@@ -30,7 +30,7 @@ function App() {
     const [nouvelleEnEdition, setNouvelleEnEdition] = useState(null);
     const [pageActuelle, setPageActuelle] = useState("accueil");
     const [openDrawer, setOpenDrawer] = useState(false);
-    const [error, setError] = useState({ error: undefined, message: " " });
+    const [error, setError] = useState({error: undefined, message: " "});
     const [isFetching, setIsFetching] = useState(false);
 
     // Charger les nouvelles au démarrage
@@ -41,11 +41,12 @@ function App() {
                 const data = await fetchAvailableNouvelleAsync();
                 setNouvelles(data);
             } catch (error) {
-                setError({ error: "error", message: error.message });
+                setError({error: "error", message: error.message});
             } finally {
                 setIsFetching(false);
             }
         }
+
         fetchData();
     }, []);
 
@@ -56,7 +57,7 @@ function App() {
             await deleteNouvelle(id);
             setNouvelles(old => old.filter(n => n.id !== id));
         } catch (err) {
-            setError({ error: err.name, message: err.message });
+            setError({error: err.name, message: err.message});
         }
     };
 
@@ -70,13 +71,13 @@ function App() {
             );
             setNouvelleEnEdition(null);
         } catch (err) {
-            setError({ error: err.name, message: err.message });
+            setError({error: err.name, message: err.message});
         }
     };
 
     return (
         <ThemeProvider>
-            <CssBaseline />
+            <CssBaseline/>
             <UserProvider>
                 <CriteriaProvider>
                     <Box
@@ -116,7 +117,7 @@ function App() {
 
                         {/* En-tête */}
                         {pageActuelle === "accueil" && (
-                            <Container maxWidth="lg" sx={{ mt: 10, mb: 5 }}>
+                            <Container maxWidth="lg" sx={{mt: 10, mb: 5}}>
                                 <Paper elevation={3} sx={(theme) => ({
                                     p: 4,
                                     textAlign: "center",
@@ -137,28 +138,28 @@ function App() {
                         )}
 
                         {/* Contenu principal */}
-                        <Box sx={{ flexGrow: 1, px: 2, py: 4 }}>
+                        <Box sx={{flexGrow: 1, px: 2, py: 4}}>
                             <Grid container spacing={3} alignItems="flex-start">
 
                                 {/* Critères */}
                                 {pageActuelle === "accueil" && (
-                                    <Grid size={{ xs: 12, md: 3 }}>
-                                        <Paper sx={{ p: 2 }}>
-                                            <CriteriaForm />
-                                            <CriteriaResult />
+                                    <Grid size={{xs: 12, md: 3}}>
+                                        <Paper sx={{p: 2}}>
+                                            <CriteriaForm/>
+                                            <CriteriaResult/>
                                         </Paper>
                                     </Grid>
                                 )}
 
                                 {/* Section Nouvelles */}
-                                <Grid size={{ xs: 12, md: 9 }}>
+                                <Grid size={{xs: 12, md: 9}}>
                                     {!error.error ? (
                                         <Grid container spacing={3}>
 
                                             {pageActuelle === "accueil" ? (
                                                 nouvelles.length ? (
                                                     nouvelles.map(item => (
-                                                        <Grid size={{ xs: 12, sm: 6 }} key={item.id}>
+                                                        <Grid size={{xs: 12, sm: 6}} key={item.id}>
                                                             <NouvelleCarte
                                                                 item={item}
                                                                 nouvelleEnEdition={nouvelleEnEdition}
@@ -178,13 +179,13 @@ function App() {
                                                 )
                                             ) : pageActuelle === "statistiques" ? (
                                                 <Grid size={12}>
-                                                    <Statistiques nouvelles={nouvelles} />
+                                                    <Statistiques nouvelles={nouvelles}/>
                                                 </Grid>
                                             ) : null}
 
                                         </Grid>
                                     ) : (
-                                        <Alert severity="error" sx={{ margin: "40px" }}>
+                                        <Alert severity="error" sx={{margin: "40px"}}>
                                             <AlertTitle>Error</AlertTitle>
                                             {error.message}
                                         </Alert>
@@ -197,7 +198,7 @@ function App() {
 
                         {/* Drawer */}
                         <Drawer anchor="right" open={openDrawer} onClose={toggleDrawer(false)}>
-                            <Box sx={{ width: 350, p: 2, marginTop: 10 }}>
+                            <Box sx={{width: 350, p: 2, marginTop: 10}}>
                                 <NouvelleListe
                                     nouvelles={nouvelles}
                                     setNouvelles={setNouvelles}
@@ -205,7 +206,7 @@ function App() {
                             </Box>
                         </Drawer>
 
-                        <BottomItem elevation={3} />
+                        <BottomItem elevation={3}/>
 
                     </Box>
                 </CriteriaProvider>
