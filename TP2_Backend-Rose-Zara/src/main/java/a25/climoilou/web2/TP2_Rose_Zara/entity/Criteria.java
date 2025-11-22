@@ -56,10 +56,15 @@ public class Criteria {
         this.tags = tags;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Criteria criteria = (Criteria) o;
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        Criteria criteria = (Criteria) object;
         return Objects.equals(idCritere, criteria.idCritere) &&
                 Objects.equals(titre, criteria.titre) &&
                 Objects.equals(date, criteria.date) &&
@@ -70,19 +75,31 @@ public class Criteria {
                 Objects.equals(tags, criteria.tags);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(idCritere, titre, date, motCle, categorie, region, resume, tags);
+        return Objects.hash(idCritere);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return "Critere" +
-                "id=" + idCritere +
+        return "Criteria{" +
+                "idCritere=" + idCritere +
+                ", titre='" + titre + '\'' +
+                ", date=" + date +
                 ", motCle='" + motCle + '\'' +
                 ", categorie='" + categorie + '\'' +
                 ", region='" + region + '\'' +
                 ", resume='" + resume + '\'' +
-                ", tags='" + tags;
+                ", tags='" + tags + '\'' +
+                '}';
     }
+
 }

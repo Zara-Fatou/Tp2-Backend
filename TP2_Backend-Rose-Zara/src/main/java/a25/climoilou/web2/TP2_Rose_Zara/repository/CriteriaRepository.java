@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface CriteriaRepository extends JpaRepository<Criteria,Long> {
-    @Override
-    Optional<Criteria> findById(Long aLong);
+
 }

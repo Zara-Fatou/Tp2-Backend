@@ -38,4 +38,5 @@ public class CriteriaInitializer {
 
         log.info("Critères initiaux recréés.");
     }
+
 }

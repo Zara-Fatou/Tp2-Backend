@@ -1,47 +1,44 @@
 package a25.climoilou.web2.TP2_Rose_Zara.controller;
 
+import a25.climoilou.web2.TP2_Rose_Zara.data.UserStore;
 import a25.climoilou.web2.TP2_Rose_Zara.entity.Utilisateur;
-import a25.climoilou.web2.TP2_Rose_Zara.repository.UserRepository;
-import ch.qos.logback.classic.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
+import java.util.List;
 
-
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/utilisateurs")
 public class UserController {
 
-    private final UserRepository utilisateurRepository;
-    Logger log;
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserRepository utilisateurRepository) {
-        this.utilisateurRepository = utilisateurRepository;
-    }
-
+    /**
+     * Retourne la liste complète des utilisateurs préconfigurés
+     */
     @GetMapping(produces = "application/json")
-    public Iterable<Utilisateur> listAllUtilisateurs() {
-        return utilisateurRepository.findAll();
+    public List<Utilisateur> listAllUtilisateurs() {
+        log.info("Liste des utilisateurs consultée");
+        return UserStore.USERS;
     }
 
-
+    /**
+     * Recherche d'un utilisateur par nom
+     */
     @GetMapping("/recherche")
     public Utilisateur getUserByUsername(@RequestParam String nom) {
-        log.info("Recherche utilisateur par nom: {}", nom);
+        log.info("Recherche utilisateur par nom : {}", nom);
 
-        Utilisateur utilisateur = utilisateurRepository.findByNom(nom);
-        if (utilisateur == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur n'existe pas");
-        }
-        return utilisateur;
+        return UserStore.USERS.stream()
+                .filter(u -> u.getNom().equalsIgnoreCase(nom))
+                .findFirst()
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                "Utilisateur introuvable")
+                );
     }
-
-
-    
-
 }

@@ -1,30 +1,10 @@
 package a25.climoilou.web2.TP2_Rose_Zara.entity;
 
-
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
-@Entity
 public class Utilisateur {
 
-    @Id
-    @Getter
-    @Setter
     private Long id;
-
-    @Column(length = 100)
-    @Getter
-    @Setter
     private String nom;
-
-    @Getter
-    @Setter
     private String role;
-
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_")
-    private Utilisateur proprietaire;
 
     public Utilisateur(Long id, String nom, String role) {
         this.id = id;
@@ -34,5 +14,12 @@ public class Utilisateur {
 
     public Utilisateur() {}
 
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

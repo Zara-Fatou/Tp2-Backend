@@ -73,7 +73,15 @@ public class CriteriaController {
         }
 
         critereRepository.deleteById(id);
+
+        //Vérifier si tous les critères sont supprimés
+        if (critereRepository.count() == 0) {
+            log.warn("Tous les critères ont été supprimés, recréation des critères initiaux...");
+            initializer.recreateInitialCriteria();
+        }
+
         return ResponseEntity.noContent().build();
     }
+
 
 }
