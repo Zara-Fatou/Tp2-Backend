@@ -1,5 +1,6 @@
 package a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.controller;
 
+import a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.exception.NouvelleInformationInvalidException;
 import a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.validation.NouvelleValidateur;
 import a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.entity.Nouvelle;
 import a25.climoilou.web2.TP2_Rose_Zara.Nouvelle.repository.NouvelleRepository;
@@ -47,7 +48,8 @@ public class NouvelleController {
             logger.info("Nouvelle supprimée id={}", id);
         } else {
             logger.warn("Nouvelle id non trouvée : {}", id);
-            throw new RuntimeException("Nouvelle id introuvable");
+            throw new NouvelleInformationInvalidException("Nouvelle id introuvable");
+
         }
     }
 
