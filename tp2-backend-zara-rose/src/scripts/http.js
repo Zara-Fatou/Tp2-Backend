@@ -96,16 +96,16 @@ export async function fetchAvailableCriteriaAsync() {
  * @returns {Promise<any>}
  */
 export async function ajouterCritereFetch(critere) {
-    const rep = await fetch(`${BASE_URL}/criteres/post`, {
+    const rep = await fetch(`${BASE_URL}/criteres`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(critere)
     });
 
-
     if (!rep.ok) throw new Error("Erreur lors de l'ajout du critère");
     return await rep.json();
 }
+
 
 
 /**

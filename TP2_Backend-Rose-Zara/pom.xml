@@ -14,10 +14,12 @@
 	<groupId>a25.climoilou.web2</groupId>
 	<artifactId>TP2_Rose-Zara</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>TP2_Rose-Zara</name>
 	<description>Backend pour les nouvelles</description>
 
 	<properties>
+
 		<java.version>17</java.version>
 	</properties>
 

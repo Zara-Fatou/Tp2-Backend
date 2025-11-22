@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Gère les erreurs liées aux critères et retourne des réponses claires au client.
+ */
 @RestControllerAdvice
 public class CriteriaExceptionHandler {
 
     /**
-     *
-     * @param ex
-     * @return
+     * Retourne une erreur 404 si un critère est introuvable.
      */
     @ExceptionHandler(CriteriaNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -20,9 +21,7 @@ public class CriteriaExceptionHandler {
     }
 
     /**
-     *
-     * @param ex
-     * @return
+     * Retourne une erreur 400 si un critère est invalide.
      */
     @ExceptionHandler(CriteriaInvalidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -31,9 +30,7 @@ public class CriteriaExceptionHandler {
     }
 
     /**
-     *
-     * @param ex
-     * @return
+     * Gère toutes les autres erreurs serveur inattendues.
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
