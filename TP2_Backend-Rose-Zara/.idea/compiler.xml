@@ -10,7 +10,10 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
           <entry name="$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-configuration-processor/3.2.5/spring-boot-configuration-processor-3.2.5.jar" />
+          <entry name="$USER_HOME$/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+          <entry name="$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-configuration-processor/3.2.5/spring-boot-configuration-processor-3.2.5.jar" />
         </processorPath>
+        <module name="TP2_Rose-Zara" />
       </profile>
     </annotationProcessing>
   </component>

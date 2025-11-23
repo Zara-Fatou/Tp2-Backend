@@ -17,7 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5175")
 @RestController
 @RequestMapping("/criteres")
 public class CriteriaController {

@@ -1,7 +1,6 @@
 import "./App.css";
 import {useEffect, useState} from "react";
 import { UserProvider } from "/src/context/UserContext.jsx";
-import { CriteriaProvider } from "/src/context/CriteriaContext.jsx";
 import { ThemeProvider } from "/src/context/ThemeContext.jsx";
 import BottomItem from "/src/components/BottomItem.jsx";
 import NouvelleCarte from "/src/components/NouvelleCarte.jsx";
@@ -21,6 +20,7 @@ import {
     fetchAvailableNouvelleAsync,
     updateNouvelle
 } from "./scripts/http.js";
+import CriteriaProvider from "./context/CriteriaProvider.jsx";
 
 /**
  * Composant principal de l'application.
@@ -89,10 +89,6 @@ function App() {
             setError({error: err.name, message: err.message});
         }
     };
-
-
-    const handleAnnulerEdition = () => setNouvelleEnEdition(null);
-
     return (
         <ThemeProvider>
             <CssBaseline/>
